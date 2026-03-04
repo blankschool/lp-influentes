@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influentes — Blank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ─── TOKENS ─── */
+:root{
+  --ink:   #0C0C0A;
+  --ink2:  #141412;
+  --ink3:  #1C1C19;
+  --cream: #F0EDE6;
+  --cream2:#E0DDD6;
+  --cream3:#B8B5AE;
+  --muted: #5A5852;
+  --faint: rgba(240,237,230,0.06);
+  --rule:  rgba(240,237,230,0.08);
+  --rule2: rgba(240,237,230,0.04);
+  --signal:#D4C89A; /* warm gold accent — the "amplified signal" */
+
+  --display:'Libre Caslon Display','Libre Caslon Text',Georgia,serif;
+  --serif:  'Libre Caslon Text',Georgia,serif;
+  --mono:   'DM Mono',monospace;
+  --sans:   ui-sans-serif,-apple-system,'Helvetica Neue',Arial,sans-serif;
+}
+
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ─── WAVEFORM BACKGROUND TEXTURE ─── */
+.wave-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(
+    0deg,transparent,transparent 47px,
+    rgba(240,237,230,0.018) 47px,rgba(240,237,230,0.018) 48px
+  );
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:99;
+  height:56px;padding:0 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(12,12,10,0.94);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-brand-mark{
+  width:18px;height:18px;
+  border:1px solid rgba(240,237,230,0.3);
+  border-radius:50%;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-brand-mark::after{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--cream);
+}
+.nav-brand-name{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;color:rgba(240,237,230,0.5);
+}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-a{
+  font-family:var(--mono);font-size:11px;font-weight:400;
+  letter-spacing:.5px;color:rgba(240,237,230,0.25);
+  text-decoration:none;transition:color .2s;
+}
+.nav-a:hover{color:var(--cream)}
+.nav-cta{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink);background:var(--cream);
+  padding:9px 22px;text-decoration:none;border:none;
+  cursor:pointer;transition:opacity .2s;
+}
+.nav-cta:hover{opacity:.85}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  border-bottom:1px solid var(--rule);
+}
+.hero-wave{
+  position:absolute;inset:0;z-index:0;
+  display:flex;align-items:center;
+}
+.hero-wave svg{width:100%;height:100%;position:absolute;inset:0}
+
+/* grain */
+.grain{
+  position:fixed;inset:-50%;width:200%;height:200%;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;
+  animation:grain .12s steps(1) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)}
+  20%{transform:translate(3%,2%)} 30%{transform:translate(-1%,4%)}
+  40%{transform:translate(4%,-1%)} 50%{transform:translate(-3%,1%)}
+  60%{transform:translate(1%,-4%)} 70%{transform:translate(-4%,2%)}
+  80%{transform:translate(2%,3%)} 90%{transform:translate(3%,-2%)}
+}
+
+.hero-content{
+  position:relative;z-index:3;
+  padding:0 52px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:end;
+}
+.hero-kicker{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(240,237,230,0.25);
+  margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-kicker-line{width:28px;height:1px;background:rgba(240,237,230,0.15);flex-shrink:0}
+h1.hero-head{
+  font-family:var(--display);
+  font-size:clamp(60px,8.5vw,122px);
+  font-weight:400;line-height:.93;
+  letter-spacing:-3px;color:var(--cream);
+}
+h1.hero-head em{font-style:italic;color:rgba(240,237,230,0.28)}
+.hero-right{
+  padding-left:64px;
+  border-left:1px solid var(--rule);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:32px;
+}
+.hero-desc{
+  font-size:15px;font-weight:300;
+  color:rgba(240,237,230,0.4);line-height:1.85;max-width:360px;
+}
+.hero-actions{display:flex;flex-direction:column;gap:14px}
+.btn-primary{
+  display:inline-block;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;color:var(--ink);background:var(--cream);
+  padding:16px 32px;text-decoration:none;border:none;cursor:pointer;
+  transition:opacity .2s;text-align:center;
+}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{
+  font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.5px;
+  color:rgba(240,237,230,0.25);text-decoration:none;
+  display:flex;align-items:center;gap:8px;transition:color .2s;
+}
+.btn-ghost:hover{color:var(--cream)}
+
+/* signal indicator bottom-right */
+.hero-signal{
+  position:absolute;bottom:28px;right:52px;z-index:4;
+  display:flex;align-items:center;gap:12px;
+}
+.signal-bars{display:flex;align-items:flex-end;gap:3px}
+.signal-bar{
+  width:3px;border-radius:1px;
+  background:rgba(240,237,230,0.12);
+}
+.signal-bar.on{background:rgba(240,237,230,0.5)}
+.signal-bar:nth-child(1){height:6px}
+.signal-bar:nth-child(2){height:10px}
+.signal-bar:nth-child(3){height:14px}
+.signal-bar:nth-child(4){height:18px}
+.signal-bar:nth-child(5){height:22px}
+.signal-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(240,237,230,0.18);
+}
+
+/* ─── SECTION BASE ─── */
+.s{padding:100px 52px;border-bottom:1px solid var(--rule);position:relative}
+.s-dark{background:var(--ink)}
+.s-mid{background:var(--ink2)}
+.s-lift{background:var(--ink3)}
+
+.eyebrow{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(240,237,230,0.2);
+  display:flex;align-items:center;gap:14px;margin-bottom:24px;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:rgba(240,237,230,0.12);flex-shrink:0}
+
+.display{
+  font-family:var(--display);
+  font-size:clamp(40px,5vw,72px);
+  font-weight:400;line-height:.96;letter-spacing:-2px;color:var(--cream);
+}
+.display em{font-style:italic;color:rgba(240,237,230,0.3)}
+
+.body{font-size:15px;font-weight:300;color:rgba(240,237,230,0.42);line-height:1.85}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+
+/* ─── MERCADO — 4 FRENTES ─── */
+.market-statement{
+  font-family:var(--serif);
+  font-size:clamp(26px,3vw,42px);
+  font-weight:400;line-height:1.15;color:var(--cream);letter-spacing:-.5px;
+  margin-bottom:48px;
+}
+.market-statement em{font-style:italic;color:rgba(240,237,230,0.35)}
+
+/* signal level meter framework */
+.frentes-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--rule);border:1px solid var(--rule);
+  margin-top:56px;
+}
+.frente{
+  background:var(--ink);padding:36px 32px;
+  position:relative;overflow:hidden;
+  transition:background .2s;
+}
+.frente:hover{background:var(--ink2)}
+.frente-signal{
+  display:flex;align-items:flex-end;gap:3px;margin-bottom:20px;
+}
+.frente-bar{
+  width:4px;border-radius:1px;
+  background:rgba(240,237,230,0.06);
+}
+.frente.active .frente-bar{background:rgba(240,237,230,0.55)}
+.frente-bar:nth-child(1){height:8px}
+.frente-bar:nth-child(2){height:14px}
+.frente-bar:nth-child(3){height:20px}
+.frente-bar:nth-child(4){height:26px}
+.frente-bar:nth-child(5){height:32px}
+.frente-glyph{
+  font-family:var(--mono);font-size:18px;
+  color:rgba(240,237,230,0.12);
+  position:absolute;top:28px;right:28px;
+}
+.frente-title{
+  font-size:14px;font-weight:500;color:var(--cream);margin-bottom:10px;
+}
+.frente-body{font-size:13px;font-weight:300;color:rgba(240,237,230,0.38);line-height:1.75}
+.frente-top{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,rgba(212,200,154,0) 0%,rgba(212,200,154,0.5) 50%,rgba(212,200,154,0) 100%);
+  opacity:0;transition:opacity .3s;
+}
+.frente:hover .frente-top{opacity:1}
+
+/* quote */
+.quote-block{
+  border-left:2px solid rgba(240,237,230,0.08);
+  padding:24px 0 24px 28px;margin-top:48px;
+}
+.quote-text{
+  font-family:var(--serif);font-size:16px;font-style:italic;font-weight:400;
+  color:rgba(240,237,230,0.5);line-height:1.7;margin-bottom:14px;
+}
+.quote-attr{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.2);letter-spacing:1px}
+
+/* ─── O QUE É ─── */
+.not-list{display:flex;flex-direction:column;gap:0;margin:32px 0}
+.not-item{
+  display:flex;gap:16px;align-items:baseline;
+  padding:14px 0;border-bottom:1px solid var(--rule2);
+  font-size:13px;font-weight:300;
+}
+.not-x{
+  font-family:var(--mono);font-size:12px;
+  color:rgba(240,237,230,0.12);flex-shrink:0;
+}
+.not-text{color:rgba(240,237,230,0.2);text-decoration:line-through;text-decoration-color:rgba(240,237,230,0.08)}
+.yes-block{
+  border:1px solid rgba(240,237,230,0.1);
+  border-top:2px solid rgba(240,237,230,0.45);
+  padding:28px 24px;
+}
+.yes-label{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(240,237,230,0.25);margin-bottom:12px;
+}
+.yes-text{
+  font-family:var(--serif);font-size:16px;font-weight:400;
+  color:rgba(240,237,230,0.72);line-height:1.65;
+}
+
+/* specs table */
+.specs{
+  border:1px solid var(--rule);
+  display:flex;flex-direction:column;
+}
+.spec-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;padding:15px 20px;border-bottom:1px solid var(--rule);font-size:13px;
+}
+.spec-row:last-child{border-bottom:none}
+.spec-k{color:rgba(240,237,230,0.28);font-weight:300}
+.spec-v{font-weight:500;color:var(--cream);text-align:right;font-family:var(--mono);font-size:12px}
+
+/* ─── QUEM SOMOS ─── */
+.qs-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin-bottom:56px;
+}
+.qs-stat{
+  background:var(--ink);padding:40px 36px 32px;
+  position:relative;overflow:hidden;
+}
+.qs-stat:first-child{border-top:2px solid rgba(240,237,230,0.45)}
+.qs-num{
+  font-family:var(--display);
+  font-size:clamp(44px,5vw,68px);
+  font-weight:400;color:var(--cream);letter-spacing:-2px;
+  line-height:1;margin-bottom:10px;
+}
+.qs-num.dim{color:rgba(240,237,230,0.25)}
+.qs-label{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+.qs-desc{font-size:12px;font-weight:300;color:rgba(240,237,230,0.25);line-height:1.65;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule2)}
+
+.qs-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:none}
+.qs-origin{background:var(--ink);padding:40px 36px}
+.qs-origin-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.qs-origin-text{font-family:var(--serif);font-size:15px;font-weight:400;color:rgba(240,237,230,0.55);line-height:1.75}
+.qs-portfolio{background:var(--ink);padding:40px 36px}
+.qs-portfolio-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.qs-names{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.qs-name-item{padding:10px 0;border-bottom:1px solid var(--rule2)}
+.qs-name-item:last-child,.qs-name-item:nth-last-child(2){border-bottom:none}
+.qs-name{font-size:13px;font-weight:400;color:rgba(240,237,230,0.5)}
+.qs-co{font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.2);margin-top:2px}
+
+/* ─── PILARES ─── */
+.track-legend{
+  display:flex;gap:24px;align-items:center;margin-bottom:32px;
+}
+.tleg{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.28);letter-spacing:.5px}
+.tleg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.tleg-dot.ind{background:rgba(240,237,230,0.65)}
+.tleg-dot.col{background:rgba(240,237,230,0.28)}
+.tleg-dot.adv{background:rgba(212,200,154,0.5)}
+
+.pilares-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+}
+.pilar{
+  background:var(--ink);padding:24px 20px 28px;
+  position:relative;transition:background .2s;
+}
+.pilar:hover{background:var(--ink2)}
+.pilar-bar{position:absolute;top:0;left:0;right:0;height:2px}
+.pilar.ind .pilar-bar{background:rgba(240,237,230,0.55)}
+.pilar.col .pilar-bar{background:rgba(240,237,230,0.22)}
+.pilar.adv .pilar-bar{background:rgba(212,200,154,0.45)}
+.pilar-num{
+  font-family:var(--mono);font-size:10px;
+  color:rgba(240,237,230,0.1);margin-bottom:14px;
+  display:block;
+}
+.pilar-title{font-size:13px;font-weight:500;color:rgba(240,237,230,0.72);margin-bottom:7px;line-height:1.3}
+.pilar-body{font-size:11.5px;font-weight:300;color:rgba(240,237,230,0.3);line-height:1.6}
+.pilar-when{
+  margin-top:16px;
+  font-family:var(--mono);font-size:9px;letter-spacing:1px;
+}
+.pilar.ind .pilar-when{color:rgba(240,237,230,0.2)}
+.pilar.col .pilar-when{color:rgba(240,237,230,0.12)}
+.pilar.adv .pilar-when{color:rgba(212,200,154,0.25)}
+
+/* ─── JORNADA 4 MESES ─── */
+.jornada-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:52px;align-items:end}
+
+.meses-nav{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border:1px solid var(--rule);
+}
+.m-btn{
+  padding:20px 24px;cursor:pointer;
+  background:transparent;border:none;
+  border-right:1px solid var(--rule);
+  border-bottom:2px solid transparent;
+  color:inherit;text-align:left;transition:background .2s,border-color .2s;
+}
+.m-btn:last-child{border-right:none}
+.m-btn:hover{background:rgba(240,237,230,0.02)}
+.m-btn.active{background:rgba(240,237,230,0.03);border-bottom-color:var(--cream)}
+.m-btn-n{
+  font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(240,237,230,0.18);margin-bottom:8px;
+}
+.m-btn.active .m-btn-n{color:rgba(240,237,230,0.45)}
+.m-btn-name{
+  font-family:var(--serif);font-size:16px;font-style:italic;
+  color:rgba(240,237,230,0.25);line-height:1;
+}
+.m-btn.active .m-btn-name{color:var(--cream)}
+.m-btn-verb{
+  font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.15);
+  margin-top:5px;letter-spacing:.2px;
+}
+.m-btn.active .m-btn-verb{color:rgba(240,237,230,0.32)}
+
+.m-panel{
+  display:none;
+  border:1px solid var(--rule);border-top:none;
+  background:rgba(240,237,230,0.015);
+  grid-template-columns:1fr 1fr;
+}
+.m-panel.active{display:grid}
+.mp-left{
+  padding:44px 40px;border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:24px;
+}
+.mp-title{
+  font-family:var(--display);
+  font-size:clamp(28px,3vw,44px);
+  font-weight:400;line-height:.97;letter-spacing:-1.5px;color:var(--cream);
+}
+.mp-title em{font-style:italic;color:rgba(240,237,230,0.32)}
+.mp-lead{font-size:13.5px;font-weight:300;color:rgba(240,237,230,0.4);line-height:1.85}
+
+/* week cycle */
+.cycle-label{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(240,237,230,0.18);margin-bottom:10px;
+}
+.cycle{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.cw{
+  padding:12px 10px;
+  background:rgba(240,237,230,0.02);
+  border:1px solid rgba(240,237,230,0.03);
+  border-top:2px solid transparent;
+}
+.cw.on{background:rgba(240,237,230,0.05);border-top-color:rgba(240,237,230,0.4)}
+.cw.sp{background:rgba(240,237,230,0.03);border-top-color:rgba(212,200,154,0.4)}
+.cw-n{
+  font-family:var(--mono);font-size:8px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(240,237,230,0.12);margin-bottom:5px;
+}
+.cw.on .cw-n{color:rgba(240,237,230,0.38)}
+.cw.sp .cw-n{color:rgba(212,200,154,0.3)}
+.cw-l{font-size:10px;color:rgba(240,237,230,0.18);line-height:1.4}
+.cw.on .cw-l{color:rgba(240,237,230,0.65);font-weight:500}
+.cw.sp .cw-l{color:rgba(212,200,154,0.5)}
+
+.mp-right{padding:44px 40px;display:flex;flex-direction:column;gap:0}
+.mp-item{
+  display:grid;grid-template-columns:8px 1fr;
+  gap:14px;padding:16px 0;border-bottom:1px solid var(--rule2);align-items:start;
+}
+.mp-item:last-child{border-bottom:none}
+.mp-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.mp-item.ind .mp-dot{background:rgba(240,237,230,0.6)}
+.mp-item.col .mp-dot{background:rgba(240,237,230,0.25)}
+.mp-item.adv .mp-dot{background:rgba(212,200,154,0.5)}
+.mp-track{
+  font-family:var(--mono);font-size:8px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;
+}
+.mp-item.ind .mp-track{color:rgba(240,237,230,0.3)}
+.mp-item.col .mp-track{color:rgba(240,237,230,0.18)}
+.mp-item.adv .mp-track{color:rgba(212,200,154,0.25)}
+.mp-item-title{font-size:12.5px;font-weight:500;color:rgba(240,237,230,0.75);margin-bottom:4px;line-height:1.3}
+.mp-item-desc{font-size:11.5px;font-weight:300;color:rgba(240,237,230,0.32);line-height:1.6}
+
+/* ─── INTERNALIZAÇÃO ─── */
+.intern-timeline{
+  display:grid;grid-template-columns:1fr;gap:0;
+  border-left:1px solid var(--rule);
+  margin-top:40px;
+}
+.intern-item{
+  display:grid;grid-template-columns:200px 1fr;gap:40px;
+  padding:28px 0 28px 36px;
+  border-bottom:1px solid var(--rule2);
+  position:relative;
+}
+.intern-item:last-child{border-bottom:none}
+.intern-item::before{
+  content:'';width:9px;height:9px;border-radius:50%;
+  background:rgba(240,237,230,0.15);
+  position:absolute;left:-5px;top:34px;
+  border:1px solid var(--ink2);
+}
+.intern-item.highlight::before{background:rgba(240,237,230,0.6)}
+.intern-phase{
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(240,237,230,0.2);padding-top:2px;
+}
+.intern-item.highlight .intern-phase{color:rgba(240,237,230,0.5)}
+.intern-title{font-size:15px;font-weight:500;color:rgba(240,237,230,0.65);margin-bottom:6px}
+.intern-item.highlight .intern-title{color:var(--cream)}
+.intern-body{font-size:13px;font-weight:300;color:rgba(240,237,230,0.35);line-height:1.75}
+
+.deliverables{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--rule);margin-top:40px;
+}
+.deliverable{padding:16px 20px;border-bottom:1px solid var(--rule);font-size:12.5px;font-weight:300;color:rgba(240,237,230,0.38);display:flex;align-items:baseline;gap:10px}
+.deliverable:last-child,.deliverable:nth-last-child(2){border-bottom:none}
+.deliverable::before{
+  content:'→';font-family:var(--mono);font-size:10px;
+  color:rgba(240,237,230,0.2);flex-shrink:0;
+}
+
+/* ─── BASE OPERACIONAL ─── */
+.base-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:56px}
+.base-card{background:var(--ink);padding:44px 40px;transition:background .2s}
+.base-card:hover{background:var(--ink2)}
+.base-card-num{
+  font-family:var(--display);font-size:52px;font-weight:400;
+  color:rgba(240,237,230,0.06);line-height:1;margin-bottom:16px;
+}
+.base-card-title{font-size:15px;font-weight:500;color:rgba(240,237,230,0.65);margin-bottom:10px}
+.base-card-body{font-size:13px;font-weight:300;color:rgba(240,237,230,0.32);line-height:1.75}
+
+/* ─── COHORT / REDE ─── */
+.rede-table{
+  border:1px solid var(--rule);
+  display:flex;flex-direction:column;
+  margin-top:48px;
+}
+.rede-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-bottom:1px solid var(--rule);
+}
+.rede-row:last-child{border-bottom:none}
+.rede-k,.rede-v{padding:18px 24px;font-size:13px;font-weight:300}
+.rede-k{color:rgba(240,237,230,0.28);border-right:1px solid var(--rule)}
+.rede-v{font-weight:500;color:rgba(240,237,230,0.65)}
+
+/* ─── CONSELHEIROS ─── */
+.cons-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:56px;
+}
+.cons-card{
+  background:var(--ink);padding:40px 32px;transition:background .2s;
+}
+.cons-card:hover{background:var(--ink2)}
+.cons-initial{
+  font-family:var(--display);font-size:64px;font-weight:400;
+  color:rgba(240,237,230,0.05);line-height:1;margin-bottom:18px;
+}
+.cons-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--cream);margin-bottom:4px}
+.cons-role{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.28);margin-bottom:18px;line-height:1.5;letter-spacing:.3px}
+.cons-bio{font-size:12.5px;font-weight:300;color:rgba(240,237,230,0.38);line-height:1.8}
+.cons-freq{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.15);letter-spacing:.5px}
+
+/* ─── ASSESSMENT FRAMEWORK ─── */
+.assessment-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:48px;
+}
+.nivel{
+  background:var(--ink);padding:32px 28px;
+  position:relative;transition:background .2s;
+}
+.nivel:hover{background:var(--ink2)}
+.nivel-bar-wrap{
+  height:2px;background:var(--rule);margin-bottom:20px;overflow:hidden;
+}
+.nivel-bar-fill{height:100%;transition:width .6s ease}
+.nivel:nth-child(1) .nivel-bar-fill{width:33%;background:rgba(240,237,230,0.25)}
+.nivel:nth-child(2) .nivel-bar-fill{width:66%;background:rgba(240,237,230,0.4)}
+.nivel:nth-child(3) .nivel-bar-fill{width:100%;background:rgba(240,237,230,0.6)}
+.nivel-tag{font-family:var(--mono);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(240,237,230,0.2);margin-bottom:12px}
+.nivel-title{font-size:16px;font-weight:500;color:rgba(240,237,230,0.65);margin-bottom:10px}
+.nivel-body{font-size:12.5px;font-weight:300;color:rgba(240,237,230,0.32);line-height:1.7}
+
+/* ─── 8 ROTEIROS FRAMEWORK ─── */
+.rot-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:48px;
+}
+.rot-card{background:var(--ink);padding:32px 28px;transition:background .2s}
+.rot-card:hover{background:var(--ink2)}
+.rot-num{font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.15);margin-bottom:10px;letter-spacing:1px}
+.rot-title{font-family:var(--serif);font-size:20px;font-weight:400;color:rgba(240,237,230,0.6);margin-bottom:18px}
+.rot-model{display:flex;gap:10px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule2);font-size:12.5px;font-weight:300;color:rgba(240,237,230,0.35)}
+.rot-model:last-child{border-bottom:none}
+.rot-model-letter{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.2);flex-shrink:0}
+
+.rot-math{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:none;
+}
+.rot-math-cell{
+  background:var(--ink2);padding:20px 24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.rot-math-n{
+  font-family:var(--display);font-size:36px;font-weight:400;
+  color:var(--cream);letter-spacing:-1px;line-height:1;
+}
+.rot-math-label{font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.25);letter-spacing:1px;text-align:center}
+.rot-math-op{
+  background:var(--ink3);
+  font-family:var(--mono);font-size:24px;color:rgba(240,237,230,0.15);
+}
+
+/* ─── CASES ─── */
+.cases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:56px;
+}
+.case-card{
+  background:var(--ink);padding:40px 32px;
+  position:relative;overflow:hidden;transition:background .2s;
+}
+.case-card:hover{background:var(--ink2)}
+.case-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:transparent;transition:background .3s;
+}
+.case-card:hover::before{background:rgba(212,200,154,0.4)}
+.case-num{
+  font-family:var(--display);
+  font-size:clamp(32px,3.5vw,48px);
+  font-weight:400;color:var(--cream);
+  line-height:1;margin-bottom:16px;letter-spacing:-1.5px;
+}
+.case-body{font-size:13px;font-weight:300;color:rgba(240,237,230,0.38);line-height:1.8;margin-bottom:28px}
+.case-rule{height:1px;background:var(--rule);margin-bottom:14px}
+.case-who{font-family:var(--serif);font-size:14px;color:var(--cream)}
+.case-role{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.22);margin-top:3px;letter-spacing:.3px}
+
+/* ─── INVESTIMENTO ─── */
+.inv-card{
+  border:1px solid var(--rule);border-top:2px solid var(--cream);
+  background:var(--ink2);margin-top:56px;
+  display:grid;grid-template-columns:280px 1fr;
+}
+.inv-left{
+  padding:48px 40px;border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;
+}
+.inv-label{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,237,230,0.3);margin-bottom:20px}
+.inv-price{
+  font-family:var(--display);font-size:50px;font-weight:400;
+  color:var(--cream);letter-spacing:-2px;line-height:1;margin-bottom:6px;
+}
+.inv-period{font-family:var(--mono);font-size:11px;color:rgba(240,237,230,0.22);margin-bottom:36px}
+.btn-inv{
+  display:block;width:100%;padding:16px;text-align:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;
+  background:var(--cream);color:var(--ink);
+  border:none;cursor:pointer;transition:opacity .2s;margin-bottom:12px;
+}
+.btn-inv:hover{opacity:.88}
+.inv-note{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.15);text-align:center;line-height:1.6}
+.inv-right{padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.inv-items{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+}
+.inv-item{
+  display:flex;gap:10px;font-size:12.5px;font-weight:300;
+  color:rgba(240,237,230,0.55);padding:8px 0;
+  border-bottom:1px solid var(--rule2);
+  align-items:baseline;
+}
+.inv-check{
+  font-family:var(--mono);font-size:10px;
+  color:rgba(240,237,230,0.4);flex-shrink:0;
+}
+.inv-membership{
+  font-size:12px;font-weight:300;color:rgba(240,237,230,0.2);
+  line-height:1.7;border-top:1px solid var(--rule);padding-top:18px;
+}
+
+/* ─── FAQ ─── */
+.faq-wrap{display:grid;grid-template-columns:260px 1fr;gap:80px}
+.faq-side-head{
+  font-family:var(--display);font-size:36px;font-weight:400;
+  color:var(--cream);letter-spacing:-1.5px;line-height:1;margin-bottom:14px;
+}
+.faq-side-head em{font-style:italic;color:rgba(240,237,230,0.3)}
+.faq-side-body{font-family:var(--mono);font-size:11px;color:rgba(240,237,230,0.25);line-height:1.7}
+.faq-list{border-top:1px solid var(--rule)}
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-q{
+  width:100%;background:none;border:none;
+  color:rgba(240,237,230,0.6);text-align:left;
+  font-family:var(--sans);font-size:13.5px;font-weight:400;
+  padding:18px 0;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--cream)}
+.faq-plus{font-family:var(--mono);font-size:14px;color:rgba(240,237,230,0.18);flex-shrink:0;transition:all .2s}
+.faq-a{font-size:13px;font-weight:300;color:rgba(240,237,230,0.35);line-height:1.85;padding-bottom:18px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-plus{transform:rotate(45deg);color:rgba(240,237,230,0.45)}
+
+/* ─── CLOSE ─── */
+.close-s{
+  padding:120px 52px;display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;background:var(--ink2);
+  position:relative;overflow:hidden;
+}
+.close-title{
+  font-family:var(--display);
+  font-size:clamp(44px,6vw,82px);
+  font-weight:400;line-height:.93;
+  letter-spacing:-3px;color:var(--cream);margin-bottom:24px;
+}
+.close-title em{font-style:italic;color:rgba(240,237,230,0.28)}
+.close-sub{font-family:var(--mono);font-size:11px;color:rgba(240,237,230,0.28);line-height:1.7;letter-spacing:.3px}
+.close-card{border:1px solid var(--rule);border-top:2px solid var(--cream)}
+.close-inner{padding:36px}
+.close-clabel{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,237,230,0.2);margin-bottom:20px}
+.close-specs{display:flex;flex-direction:column;gap:0}
+.close-spec{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:16px;padding:11px 0;border-bottom:1px solid var(--rule2);font-size:12.5px;
+}
+.close-spec:last-child{border-bottom:none}
+.close-spec-k{color:rgba(240,237,230,0.25);font-weight:300}
+.close-spec-v{font-family:var(--mono);font-size:11px;font-weight:500;color:rgba(240,237,230,0.65)}
+.close-foot{padding:24px 36px;border-top:1px solid var(--rule);background:rgba(240,237,230,0.015)}
+.btn-close{
+  display:block;width:100%;padding:17px;text-align:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;
+  background:var(--cream);color:var(--ink);border:none;cursor:pointer;
+  transition:opacity .2s;margin-bottom:10px;
+}
+.btn-close:hover{opacity:.88}
+.close-terms{font-family:var(--mono);font-size:9px;color:rgba(240,237,230,0.12);text-align:center;letter-spacing:.5px}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:22px 52px;display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--rule);
+}
+.f-blank{font-family:var(--mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(240,237,230,0.12)}
+.f-copy{font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.1)}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .nav-links .nav-a{display:none}
+  .hero-content{grid-template-columns:1fr;padding:0 24px 60px}
+  .hero-right{border-left:none;border-top:1px solid var(--rule);padding:36px 0 0}
+  .s{padding:72px 24px}
+  .two-col,.jornada-head,.faq-wrap,.close-s,.inv-card{grid-template-columns:1fr;gap:48px}
+  .inv-card{grid-template-columns:1fr}
+  .inv-left{border-right:none;border-bottom:1px solid var(--rule)}
+  .frentes-grid,.qs-stats,.qs-bottom,.pilares-grid,.cons-grid,.cases-grid,.assessment-grid{grid-template-columns:1fr}
+  .meses-nav{grid-template-columns:1fr 1fr}
+  .m-panel.active{grid-template-columns:1fr}
+  .mp-left{border-right:none;border-bottom:1px solid var(--rule)}
+  .rot-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:20px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-brand-mark"></div>
+    <span class="nav-brand-name">Blank</span>
+  </div>
+  <div class="nav-links">
+    <a href="#estrutura" class="nav-a">Estrutura</a>
+    <a href="#conselheiros" class="nav-a">Conselheiros</a>
+    <a href="#cases" class="nav-a">Cases</a>
+    <a href="#investimento" class="nav-a">Investimento</a>
+    <a href="#investimento" class="nav-cta">Candidatura</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <!-- Animated waveform SVG — the "voice signal" -->
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="wfade" x1="0%" y1="0" x2="100%" y2="0">
+          <stop offset="0%" stop-color="#0C0C0A"/>
+          <stop offset="15%" stop-color="#0C0C0A" stop-opacity="0"/>
+          <stop offset="75%" stop-color="#0C0C0A" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0C0C0A"/>
+        </linearGradient>
+        <linearGradient id="wfade2" x1="0%" y1="0" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#0C0C0A"/>
+          <stop offset="20%" stop-color="#0C0C0A" stop-opacity="0"/>
+          <stop offset="80%" stop-color="#0C0C0A" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0C0C0A"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Horizontal grid lines (oscilloscope paper) -->
+      <g opacity="0.04">
+        <line x1="0" y1="180" x2="1440" y2="180" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="0" y1="270" x2="1440" y2="270" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="0" y1="360" x2="1440" y2="360" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="0" y1="450" x2="1440" y2="450" stroke="#F0EDE6" stroke-width="0.8"/>
+        <line x1="0" y1="540" x2="1440" y2="540" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="0" y1="630" x2="1440" y2="630" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="0" y1="720" x2="1440" y2="720" stroke="#F0EDE6" stroke-width="0.5"/>
+      </g>
+
+      <!-- Vertical grid lines -->
+      <g opacity="0.025">
+        <line x1="180" y1="0" x2="180" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="360" y1="0" x2="360" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="540" y1="0" x2="540" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="720" y1="0" x2="720" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="900" y1="0" x2="900" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="1080" y1="0" x2="1080" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+        <line x1="1260" y1="0" x2="1260" y2="900" stroke="#F0EDE6" stroke-width="0.5"/>
+      </g>
+
+      <!-- Waveform lines — amplitude grows from left to right (amplification) -->
+      <!-- Wave 1 — low amplitude left, high right -->
+      <path id="w1" d="" fill="none" stroke="#F0EDE6" stroke-width="1.5" opacity="0.18"/>
+      <!-- Wave 2 — slightly offset -->
+      <path id="w2" d="" fill="none" stroke="#F0EDE6" stroke-width="0.8" opacity="0.08"/>
+      <!-- Wave 3 — subtle background -->
+      <path id="w3" d="" fill="none" stroke="#D4C89A" stroke-width="0.6" opacity="0.06"/>
+
+      <!-- Overlay gradients -->
+      <rect x="0" y="0" width="1440" height="900" fill="url(#wfade)"/>
+      <rect x="0" y="0" width="1440" height="900" fill="url(#wfade2)"/>
+
+      <!-- Center dot / source -->
+      <circle cx="200" cy="450" r="3" fill="#F0EDE6" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-kicker">
+        <div class="hero-kicker-line"></div>
+        Programa Executivo · Influentes
+      </div>
+      <h1 class="hero-head">
+        Marca pessoal<br>
+        <em>como canal</em><br>
+        de aquisição.
+      </h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        Em 120 dias, a Blank constrói o seu posicionamento, treina o seu time e instala a operação. No encerramento, a capacidade está dentro da empresa — não na agência.
+      </p>
+      <div class="hero-actions">
+        <a href="#investimento" class="btn-primary">Candidatura</a>
+        <a href="#estrutura" class="btn-ghost">Como funciona →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-signal">
+    <div class="signal-bars">
+      <div class="signal-bar on"></div>
+      <div class="signal-bar on"></div>
+      <div class="signal-bar on"></div>
+      <div class="signal-bar on"></div>
+      <div class="signal-bar"></div>
+    </div>
+    <span class="signal-label">Sinal</span>
+  </div>
+</section>
+
+<!-- ═══ MERCADO ═══ -->
+<section class="s s-dark">
+  <div class="wave-bg"></div>
+  <div class="eyebrow">Por que isso importa</div>
+  <h2 class="market-statement">
+    O mercado não compra<br>
+    do melhor. Compra de<br>
+    <em>quem ele lembra.</em>
+  </h2>
+  <p class="body" style="max-width:520px;margin-bottom:0">Quando a presença do fundador se torna consistente, os efeitos aparecem em quatro frentes do negócio — todas com retorno acumulativo.</p>
+
+  <div class="frentes-grid reveal">
+    <div class="frente active">
+      <div class="frente-signal">
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+      </div>
+      <div class="frente-top"></div>
+      <span class="frente-glyph">↗</span>
+      <div class="frente-title">Geração de leads qualificados</div>
+      <p class="frente-body">Clientes originados por autoridade chegam com intenção maior e ciclo de venda menor. O CAC é estruturalmente mais baixo — e melhora com o tempo.</p>
+    </div>
+    <div class="frente">
+      <div class="frente-signal">
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+      </div>
+      <div class="frente-top"></div>
+      <span class="frente-glyph">◈</span>
+      <div class="frente-title">Atração de talento</div>
+      <p class="frente-body">Profissionais de alta performance escolhem onde trabalhar com base em quem está construindo o negócio. Posicionamento claro do fundador reduz o custo das melhores contratações.</p>
+    </div>
+    <div class="frente">
+      <div class="frente-signal">
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+      </div>
+      <div class="frente-top"></div>
+      <span class="frente-glyph">⟳</span>
+      <div class="frente-title">Parcerias e deal flow</div>
+      <p class="frente-body">Parcerias estratégicas, M&A e oportunidades relevantes circulam entre quem o mercado conhece. Posicionamento claro amplia o acesso a esse fluxo.</p>
+    </div>
+    <div class="frente">
+      <div class="frente-signal">
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+        <div class="frente-bar"></div>
+      </div>
+      <div class="frente-top"></div>
+      <span class="frente-glyph">∞</span>
+      <div class="frente-title">Ativo permanente</div>
+      <p class="frente-body">Diferente de mídia paga, a autoridade construída não se deprecia quando o investimento para. É um ativo que permanece independente de empresa, cargo ou ciclo econômico.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:56px;max-width:600px">
+    <div class="quote-block">
+      <p class="quote-text">"Mídia paga mantém o custo constante. Autoridade acumulada reduz esse custo a cada ciclo. São lógicas opostas — e a maioria das empresas só opera com uma delas."</p>
+      <div class="quote-attr">— Blank</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ O QUE É ═══ -->
+<section class="s s-mid">
+  <div class="two-col">
+    <div>
+      <div class="eyebrow">O que é o Influentes</div>
+      <h2 class="display" style="margin-bottom:28px">
+        Não é mentoria.<br><em>Não é agência.</em>
+      </h2>
+      <p class="body" style="margin-bottom:32px">O problema não é de esforço — é de infraestrutura. Posicionamento que não existe, time que não tem método, operação que depende da agência.</p>
+      <div class="not-list">
+        <div class="not-item"><span class="not-x">✕</span><span class="not-text">Mentoria onde o empresário aprende e executa sozinho</span></div>
+        <div class="not-item"><span class="not-x">✕</span><span class="not-text">Curso gravado para assistir quando sobrar tempo</span></div>
+        <div class="not-item"><span class="not-x">✕</span><span class="not-text">Agência que produz conteúdo sem transferir inteligência</span></div>
+      </div>
+      <div class="yes-block">
+        <div class="yes-label">O que é</div>
+        <div class="yes-text">Um programa executivo que constrói o posicionamento, treina o time e instala a operação. Ao fim dos 120 dias, a empresa executa de forma autônoma — sem depender da Blank para continuar.</div>
+      </div>
+    </div>
+    <div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-k">Duração</span><span class="spec-v">120 dias</span></div>
+        <div class="spec-row"><span class="spec-k">Vagas por turma</span><span class="spec-v">30 empresas</span></div>
+        <div class="spec-row"><span class="spec-k">Faturamento mínimo</span><span class="spec-v">R$ 10M / ano</span></div>
+        <div class="spec-row"><span class="spec-k">Perfil</span><span class="spec-v">Fundador, sócio ou CEO</span></div>
+        <div class="spec-row"><span class="spec-k">Time mínimo</span><span class="spec-v">1 pessoa de marketing</span></div>
+        <div class="spec-row"><span class="spec-k">Entrada</span><span class="spec-v">Por candidatura</span></div>
+        <div class="spec-row"><span class="spec-k">Investimento</span><span class="spec-v">R$ 100.000</span></div>
+        <div class="spec-row"><span class="spec-k">Conselheiros</span><span class="spec-v">Rony · Renata · Erich</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUEM SOMOS ═══ -->
+<section class="s s-dark">
+  <div class="eyebrow">Quem somos</div>
+  <h2 class="display" style="margin-bottom:48px">A Blank.</h2>
+
+  <div class="qs-stats reveal">
+    <div class="qs-stat">
+      <div class="qs-num">35M+</div>
+      <div class="qs-label">seguidores sob gestão</div>
+      <div class="qs-desc">Maior operação de gestão de marca pessoal executiva do Brasil.</div>
+    </div>
+    <div class="qs-stat">
+      <div class="qs-num dim">1 em 4</div>
+      <div class="qs-label">brasileiros alcançados / mês</div>
+      <div class="qs-desc">Alcance orgânico mensal — sem investimento em mídia paga.</div>
+    </div>
+    <div class="qs-stat">
+      <div class="qs-num dim">2 mil</div>
+      <div class="qs-label">certificados pela Blank School</div>
+      <div class="qs-desc">Profissionais formados nos programas de educação da Blank.</div>
+    </div>
+  </div>
+
+  <div class="qs-bottom reveal">
+    <div class="qs-origin">
+      <div class="qs-origin-label">Origem</div>
+      <p class="qs-origin-text">Nascemos dentro do G4 Educação. Levamos a marca institucional a mais de 1 milhão de seguidores — e ela passou a gerar mais receita do que Tallis Gomes, Fritzores e Bruno Nardone juntos. A marca da empresa superou os canais pessoais já consolidados. Foi aí que entendemos o que estávamos construindo.</p>
+    </div>
+    <div class="qs-portfolio">
+      <div class="qs-portfolio-label">Portfólio</div>
+      <div class="qs-names">
+        <div class="qs-name-item"><div class="qs-name">Tallis Gomes</div><div class="qs-co">G4 Educação</div></div>
+        <div class="qs-name-item"><div class="qs-name">Renata Vichi</div><div class="qs-co">Kopenhagen · Brasil Cacau</div></div>
+        <div class="qs-name-item"><div class="qs-name">Sandra Chayo</div><div class="qs-co">HOPE</div></div>
+        <div class="qs-name-item"><div class="qs-name">Cris Arcangeli</div><div class="qs-co"></div></div>
+        <div class="qs-name-item"><div class="qs-name">Rony Meisler</div><div class="qs-co">Reserva · Rebels Ventures</div></div>
+        <div class="qs-name-item"><div class="qs-name">Tony Bernardini</div><div class="qs-co">Trajeto · Edini</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ESTRUTURA — 12 PILARES ═══ -->
+<section class="s s-mid" id="estrutura">
+  <div class="two-col" style="margin-bottom:52px;align-items:end">
+    <div>
+      <div class="eyebrow">Estrutura</div>
+      <h2 class="display">12 pilares.<br><em>Duas trilhas.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">O programa opera em duas dimensões paralelas: a trilha individual, de trabalho exclusivo com cada empresa, e a trilha coletiva, dentro do cohort. Cada uma entrega o que a outra não consegue.</p>
+  </div>
+
+  <div class="track-legend">
+    <div class="tleg"><div class="tleg-dot ind"></div>Individual — 1:1</div>
+    <div class="tleg"><div class="tleg-dot col"></div>Coletiva — cohort</div>
+    <div class="tleg"><div class="tleg-dot adv"></div>Conselheiros</div>
+  </div>
+
+  <div class="pilares-grid reveal">
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">01</span><div class="pilar-title">Onboarding estruturado</div><p class="pilar-body">Mapeamento do negócio, histórico e objetivos de receita.</p><div class="pilar-when">Mês 1 · Sem 1</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">02</span><div class="pilar-title">Diagnóstico de marca</div><p class="pilar-body">Posicionamento atual, gaps de percepção e análise de mercado.</p><div class="pilar-when">Mês 1 · Sem 1</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">03</span><div class="pilar-title">Planejamento estratégico</div><p class="pilar-body">Funil, linhas editoriais e plano tático completo. Feito pela Blank.</p><div class="pilar-when">Mês 1 · Sem 2</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">04</span><div class="pilar-title">Assessment do time</div><p class="pilar-body">Diagnóstico de maturidade e trilha personalizada de desenvolvimento.</p><div class="pilar-when">Mês 1</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">05</span><div class="pilar-title">8 roteiros base escritos</div><p class="pilar-body">2 por linha editorial, escritos pela Blank antes de começar.</p><div class="pilar-when">Mês 1 · Sem 3</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">06</span><div class="pilar-title">Ciclo quinzenal</div><p class="pilar-body">Mentorias alternadas com o time e com o empresário. Meses 2–4.</p><div class="pilar-when">Meses 2–4</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">07</span><div class="pilar-title">Account manager dedicado</div><p class="pilar-body">Suporte dedicado ao longo dos 120 dias entre as sessões formais.</p><div class="pilar-when">Meses 1–4</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">08</span><div class="pilar-title">3 revisões 1:1</div><p class="pilar-body">Balanço individual com o consultor nos meses 2, 3 e 4.</p><div class="pilar-when">Meses 2–4</div></div>
+    <div class="pilar ind"><div class="pilar-bar"></div><span class="pilar-num">09</span><div class="pilar-title">Call de internalização — 3h</div><p class="pilar-body">Transferência total do método para o time no encerramento.</p><div class="pilar-when">Mês 4 · Sem 4</div></div>
+    <div class="pilar col"><div class="pilar-bar"></div><span class="pilar-num">10</span><div class="pilar-title">Comunidade do cohort</div><p class="pilar-body">Troca, feedback cruzado e parcerias entre as 30 empresas.</p><div class="pilar-when">Meses 1–4</div></div>
+    <div class="pilar col"><div class="pilar-bar"></div><span class="pilar-num">11</span><div class="pilar-title">Encontro presencial</div><p class="pilar-body">Um dia com toda a turma — análise coletiva e produção ao vivo.</p><div class="pilar-when">Pós-programa</div></div>
+    <div class="pilar adv"><div class="pilar-bar"></div><span class="pilar-num">12</span><div class="pilar-title">Sessões com conselheiros</div><p class="pilar-body">Rony, Renata e Erich em rotação mensal. Ao vivo com o cohort.</p><div class="pilar-when">Todo mês</div></div>
+  </div>
+</section>
+
+<!-- ═══ A JORNADA ═══ -->
+<section class="s s-dark">
+  <div class="jornada-head">
+    <div>
+      <div class="eyebrow">A jornada</div>
+      <h2 class="display">Quatro meses.<br><em>Cada fase com</em><br><em>um propósito.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">Cada mês tem responsabilidades distintas. O primeiro é quase todo da Blank. Do segundo em diante, o time assume progressivamente — até operar com total autonomia no encerramento.</p>
+  </div>
+
+  <div class="meses-nav">
+    <button class="m-btn active" data-m="1">
+      <div class="m-btn-n">Mês 01</div>
+      <div class="m-btn-name">A Fundação</div>
+      <div class="m-btn-verb">Construir antes de publicar</div>
+    </button>
+    <button class="m-btn" data-m="2">
+      <div class="m-btn-n">Mês 02</div>
+      <div class="m-btn-name">A Execução</div>
+      <div class="m-btn-verb">Publicar com suporte real</div>
+    </button>
+    <button class="m-btn" data-m="3">
+      <div class="m-btn-n">Mês 03</div>
+      <div class="m-btn-name">A Calibração</div>
+      <div class="m-btn-verb">Ajustar com dados reais</div>
+    </button>
+    <button class="m-btn" data-m="4">
+      <div class="m-btn-n">Mês 04</div>
+      <div class="m-btn-name">A Passagem</div>
+      <div class="m-btn-verb">A Blank sai. O método fica.</div>
+    </button>
+  </div>
+
+  <!-- Panel 1 -->
+  <div class="m-panel active" data-p="1">
+    <div class="mp-left">
+      <h3 class="mp-title">A Blank constrói.<br><em>Você valida.</em></h3>
+      <p class="mp-lead">O primeiro mês é quase todo da Blank — onboarding, diagnóstico e construção do plano estratégico completo. O empresário aparece para as sessões e valida o que foi produzido.</p>
+      <div>
+        <div class="cycle-label">Ritmo das 4 semanas</div>
+        <div class="cycle">
+          <div class="cw on"><div class="cw-n">Sem 1</div><div class="cw-l">Onboarding e diagnóstico</div></div>
+          <div class="cw on"><div class="cw-n">Sem 2</div><div class="cw-l">Planejamento estratégico</div></div>
+          <div class="cw on"><div class="cw-n">Sem 3</div><div class="cw-l">8 roteiros escritos</div></div>
+          <div class="cw on"><div class="cw-n">Sem 4</div><div class="cw-l">Treinamento do time</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-right">
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Onboarding e diagnóstico completo</div><div class="mp-item-desc">Negócio, posicionamento atual, histórico de comunicação e objetivos de receita.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Planejamento estratégico</div><div class="mp-item-desc">Posicionamento, funil, linhas editoriais e plano tático. Produzido pela Blank, validado por você.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Assessment do time</div><div class="mp-item-desc">Diagnóstico de maturidade com trilha personalizada de desenvolvimento para os 120 dias.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">8 roteiros base escritos pela Blank</div><div class="mp-item-desc">2 por linha editorial. O time começa com os melhores formatos do método calibrados ao posicionamento do fundador.</div></div></div>
+      <div class="mp-item col"><div class="mp-dot"></div><div><div class="mp-track">Coletiva</div><div class="mp-item-title">Integração ao cohort</div><div class="mp-item-desc">Apresentação entre os 30 membros. Mapeamento de complementaridades e sinergias.</div></div></div>
+    </div>
+  </div>
+
+  <!-- Panel 2 -->
+  <div class="m-panel" data-p="2">
+    <div class="mp-left">
+      <h3 class="mp-title">O time publica.<br><em>A Blank acompanha.</em></h3>
+      <p class="mp-lead">Ritmo quinzenal: uma semana a mentoria é com o time, na seguinte é com o empresário. O account manager fica disponível entre as sessões para o que aparecer no dia a dia.</p>
+      <div>
+        <div class="cycle-label">Ciclo quinzenal</div>
+        <div class="cycle">
+          <div class="cw on"><div class="cw-n">Sem A</div><div class="cw-l">Mentoria com o time</div></div>
+          <div class="cw"><div class="cw-n">Sem B</div><div class="cw-l">Publicações</div></div>
+          <div class="cw on"><div class="cw-n">Sem C</div><div class="cw-l">Mentoria com empresário</div></div>
+          <div class="cw"><div class="cw-n">Sem D</div><div class="cw-l">Publicações</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-right">
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Mentoria quinzenal com o time</div><div class="mp-item-desc">Revisão do que foi publicado, ajuste de execução e direcionamento.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Mentoria quinzenal com o empresário</div><div class="mp-item-desc">Alinhamento estratégico — posicionamento e decisões que impactam a comunicação.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Account manager dedicado</div><div class="mp-item-desc">Disponível nos 120 dias para alinhamentos entre as sessões formais.</div></div></div>
+      <div class="mp-item col"><div class="mp-dot"></div><div><div class="mp-track">Coletiva</div><div class="mp-item-title">Comunidade ativa do cohort</div><div class="mp-item-desc">Feedback entre pares, análise cruzada de resultados e propostas de parceria.</div></div></div>
+    </div>
+  </div>
+
+  <!-- Panel 3 -->
+  <div class="m-panel" data-p="3">
+    <div class="mp-left">
+      <h3 class="mp-title">Dois meses de dados.<br><em>O plano evolui.</em></h3>
+      <p class="mp-lead">Com dois meses publicados, as hipóteses do mês 1 se tornam evidência. O terceiro mês é de ajuste com base no que funcionou — e é quando acontece a primeira revisão 1:1 com o consultor.</p>
+      <div>
+        <div class="cycle-label">Ciclo do mês 3</div>
+        <div class="cycle">
+          <div class="cw on"><div class="cw-n">Sem A</div><div class="cw-l">Mentoria com o time</div></div>
+          <div class="cw sp"><div class="cw-n">Sem B</div><div class="cw-l">Encontro presencial</div></div>
+          <div class="cw on"><div class="cw-n">Sem C</div><div class="cw-l">Revisão 1:1</div></div>
+          <div class="cw sp"><div class="cw-n">Sem D</div><div class="cw-l">Sessão conselheiro</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-right">
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Ciclo quinzenal com ajustes baseados em dados</div><div class="mp-item-desc">Com métricas reais, a mentoria calibra formato, cadência e ângulo editorial.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Primeira revisão 1:1</div><div class="mp-item-desc">Balanço dos 3 meses e ajuste do plano para o encerramento.</div></div></div>
+      <div class="mp-item col"><div class="mp-dot"></div><div><div class="mp-track">Coletiva</div><div class="mp-item-title">Encontro presencial do cohort</div><div class="mp-item-desc">Um dia com toda a turma — análise coletiva e produção de conteúdo ao vivo.</div></div></div>
+      <div class="mp-item adv"><div class="mp-dot"></div><div><div class="mp-track">Conselheiro</div><div class="mp-item-title">Sessão ao vivo com conselheiro</div><div class="mp-item-desc">Conversa aberta sobre como cada conselheiro construiu presença que gera negócio.</div></div></div>
+    </div>
+  </div>
+
+  <!-- Panel 4 -->
+  <div class="m-panel" data-p="4">
+    <div class="mp-left">
+      <h3 class="mp-title">A Blank sai.<br><em>O método fica.</em></h3>
+      <p class="mp-lead">O objetivo do quarto mês é garantir que tudo que foi construído viva dentro da empresa sem a Blank. Uma sessão de 3 horas transfere o método, as decisões e a documentação para o time.</p>
+      <div>
+        <div class="cycle-label">Ciclo do mês 4</div>
+        <div class="cycle">
+          <div class="cw on"><div class="cw-n">Sem A</div><div class="cw-l">Mentoria com o time</div></div>
+          <div class="cw sp"><div class="cw-n">Sem B</div><div class="cw-l">Sessão conselheiro</div></div>
+          <div class="cw on"><div class="cw-n">Sem C</div><div class="cw-l">Revisão 1:1 final</div></div>
+          <div class="cw on" style="border-top-color:rgba(212,200,154,0.6)"><div class="cw-n">Sem D</div><div class="cw-l">Internalização 3h</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mp-right">
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Call de internalização — 3 horas</div><div class="mp-item-desc">Transferência estruturada de toda a inteligência do programa para o time interno.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Revisão 1:1 final</div><div class="mp-item-desc">Balanço dos 120 dias e plano de operação autônoma para os meses seguintes.</div></div></div>
+      <div class="mp-item ind"><div class="mp-dot"></div><div><div class="mp-track">Individual</div><div class="mp-item-title">Documentação completa entregue</div><div class="mp-item-desc">Diagnóstico, plano, roteiros e decisões dos 120 dias. Dentro da empresa para sempre.</div></div></div>
+      <div class="mp-item adv"><div class="mp-dot"></div><div><div class="mp-track">Conselheiro</div><div class="mp-item-title">Segunda sessão com conselheiro</div><div class="mp-item-desc">Em 4 meses, contato com dois dos três conselheiros ao vivo.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ASSESSMENT DO TIME ═══ -->
+<section class="s s-lift">
+  <div class="two-col" style="align-items:end;margin-bottom:48px">
+    <div>
+      <div class="eyebrow">Assessment do time</div>
+      <h2 class="display">Antes de treinar,<br><em>a Blank diagnóstica.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">A maioria dos programas ensina o mesmo método para todo mundo. O Influentes começa entendendo o ponto de partida do seu time — e calibra o treinamento de acordo.</p>
+  </div>
+
+  <div class="assessment-grid reveal">
+    <div class="nivel">
+      <div class="nivel-bar-wrap"><div class="nivel-bar-fill"></div></div>
+      <div class="nivel-tag">Nível 01 — Iniciante</div>
+      <div class="nivel-title">Sem método de conteúdo</div>
+      <p class="nivel-body">Sabe comunicar o produto mas não tem framework editorial nem critério de formato. A Blank entrega o plano completo e conduz capacitação mais estruturada no mês 1.</p>
+    </div>
+    <div class="nivel">
+      <div class="nivel-bar-wrap"><div class="nivel-bar-fill"></div></div>
+      <div class="nivel-tag">Nível 02 — Em desenvolvimento</div>
+      <div class="nivel-title">Publica sem consistência estratégica</div>
+      <p class="nivel-body">Já opera redes sociais mas sem posicionamento claro do fundador como eixo. O foco é calibrar o que existe — não recomeçar do zero.</p>
+    </div>
+    <div class="nivel">
+      <div class="nivel-bar-wrap"><div class="nivel-bar-fill"></div></div>
+      <div class="nivel-tag">Nível 03 — Competente</div>
+      <div class="nivel-title">Executa bem, falta estratégia escalável</div>
+      <p class="nivel-body">Produz com qualidade técnica. O gargalo está no posicionamento do fundador. Capacitação foca em transformar autoridade em pauta editorial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8 ROTEIROS ═══ -->
+<section class="s s-dark">
+  <div class="eyebrow">8 roteiros base</div>
+  <h2 class="display" style="margin-bottom:16px">4 linhas editoriais.<br><em>2 modelos cada.</em></h2>
+  <p class="body" style="max-width:560px;margin-bottom:0">A maioria das pessoas entra nas redes e testa até descobrir o que funciona — o que leva meses. Os 8 roteiros eliminam essa curva: o time começa com modelos validados, calibrados ao posicionamento do fundador.</p>
+
+  <div class="rot-grid reveal">
+    <div class="rot-card">
+      <div class="rot-num">01</div>
+      <div class="rot-title">Pessoal</div>
+      <div class="rot-model"><span class="rot-model-letter">A</span>Uma decisão difícil que você tomou e o que aprendeu com ela</div>
+      <div class="rot-model"><span class="rot-model-letter">B</span>Uma crença sua sobre o mercado que a maioria discorda</div>
+    </div>
+    <div class="rot-card">
+      <div class="rot-num">02</div>
+      <div class="rot-title">Educacional</div>
+      <div class="rot-model"><span class="rot-model-letter">A</span>Um erro que o mercado comete e como resolver</div>
+      <div class="rot-model"><span class="rot-model-letter">B</span>Uma framework que você usa e poucos conhecem</div>
+    </div>
+    <div class="rot-card">
+      <div class="rot-num">03</div>
+      <div class="rot-title">Institucional</div>
+      <div class="rot-model"><span class="rot-model-letter">A</span>O que a empresa acredita em uma decisão recente</div>
+      <div class="rot-model"><span class="rot-model-letter">B</span>Uma conquista do time que ilustra o que você quer que a empresa seja</div>
+    </div>
+    <div class="rot-card">
+      <div class="rot-num">04</div>
+      <div class="rot-title">Informativa</div>
+      <div class="rot-model"><span class="rot-model-letter">A</span>Uma mudança no setor e o que ela significa para quem está dentro</div>
+      <div class="rot-model"><span class="rot-model-letter">B</span>Um dado recente e o que você lê nas entrelinhas</div>
+    </div>
+  </div>
+  <div class="rot-math">
+    <div class="rot-math-cell"><div class="rot-math-n">4</div><div class="rot-math-label">linhas editoriais</div></div>
+    <div class="rot-math-cell rot-math-op"><div class="rot-math-n" style="color:rgba(240,237,230,0.15)">× 2</div><div class="rot-math-label">modelos por linha</div></div>
+    <div class="rot-math-cell"><div class="rot-math-n">8</div><div class="rot-math-label">roteiros entregues</div></div>
+  </div>
+</section>
+
+<!-- ═══ INTERNALIZAÇÃO ═══ -->
+<section class="s s-mid">
+  <div class="two-col" style="align-items:end">
+    <div>
+      <div class="eyebrow">O critério de sucesso</div>
+      <h2 class="display">A Blank não quer<br>ser necessária<br><em>para sempre.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">A maioria das agências tem incentivo para permanecer indispensável. O Influentes inverte essa lógica: o critério de sucesso é que você não precise da Blank no mês 5.</p>
+  </div>
+
+  <div class="intern-timeline reveal">
+    <div class="intern-item">
+      <div class="intern-phase">Meses 1–3</div>
+      <div>
+        <div class="intern-title">A Blank opera lado a lado</div>
+        <p class="intern-body">Cada decisão editorial é feita em conjunto — e documentada em tempo real. O time acompanha e absorve o método enquanto ele é aplicado ao negócio.</p>
+      </div>
+    </div>
+    <div class="intern-item">
+      <div class="intern-phase">Mês 4 · Sem 1–3</div>
+      <div>
+        <div class="intern-title">O time assume a execução</div>
+        <p class="intern-body">A responsabilidade migra progressivamente. A Blank acompanha, mas não conduz. O time opera com supervisão antes de operar com total autonomia.</p>
+      </div>
+    </div>
+    <div class="intern-item highlight">
+      <div class="intern-phase">Mês 4 · Sem 4</div>
+      <div>
+        <div class="intern-title">Transferência completa — Call de 3h</div>
+        <p class="intern-body">Sessão estruturada que transfere o método inteiro: posicionamento, critérios editoriais, métricas e protocolos de decisão. O time sai sabendo operar de forma autônoma.</p>
+      </div>
+    </div>
+    <div class="intern-item">
+      <div class="intern-phase">Pós-programa</div>
+      <div>
+        <div class="intern-title">Documentação permanece na empresa</div>
+        <p class="intern-body">Diagnóstico, plano, roteiros e 120 dias de decisões registradas. Sem dependência externa. O ativo pertence à empresa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="deliverables reveal">
+    <div class="deliverable">Lógica de posicionamento e como evoluí-la</div>
+    <div class="deliverable">Critérios editoriais por linha de conteúdo</div>
+    <div class="deliverable">Como criar novos roteiros com o método</div>
+    <div class="deliverable">Métricas que importam e como interpretá-las</div>
+    <div class="deliverable">Protocolo de decisão quando os resultados variarem</div>
+    <div class="deliverable">Plano de operação autônoma para os meses seguintes</div>
+  </div>
+</section>
+
+<!-- ═══ BASE OPERACIONAL ═══ -->
+<section class="s s-dark">
+  <div class="eyebrow">Base Operacional</div>
+  <h2 class="display" style="margin-bottom:16px">Tudo que foi construído,<br><em>dentro da empresa.</em></h2>
+  <p class="body" style="max-width:560px;margin-bottom:0">Cada sessão, cada decisão e cada roteiro do programa fica registrado em uma plataforma estruturada pela Blank. No encerramento, esse acervo é transferido integralmente para a empresa.</p>
+
+  <div class="base-grid reveal">
+    <div class="base-card">
+      <div class="base-card-num">01</div>
+      <div class="base-card-title">Diagnóstico e posicionamento</div>
+      <p class="base-card-body">O diagnóstico de marca completo, gaps identificados e o posicionamento construído ao longo do programa — documentado e acessível.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-num">02</div>
+      <div class="base-card-title">Planejamento estratégico</div>
+      <p class="base-card-body">Funil, linhas editoriais, plano tático e critérios de decisão. A lógica do posicionamento documentada para o time aplicar independente.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-num">03</div>
+      <div class="base-card-title">Roteiros e modelos</div>
+      <p class="base-card-body">Os 8 roteiros base e todos os modelos criados ao longo dos 4 meses — um acervo que o time usa para criar novos conteúdos com o método.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-num">04</div>
+      <div class="base-card-title">Histórico de mentorias e decisões</div>
+      <p class="base-card-body">Cada sessão registrada, cada decisão editorial documentada. O time não depende da memória de ninguém — a inteligência está no sistema.</p>
+    </div>
+  </div>
+  <div style="margin-top:24px;padding:14px 20px;border:1px solid var(--rule);display:inline-block">
+    <span style="font-family:var(--mono);font-size:10px;color:rgba(240,237,230,0.22);letter-spacing:1px">Acesso permanente — sem prazo de expiração</span>
+  </div>
+</section>
+
+<!-- ═══ REDE DO COHORT ═══ -->
+<section class="s s-lift">
+  <div class="two-col" style="align-items:end;margin-bottom:48px">
+    <div>
+      <div class="eyebrow">A rede do cohort</div>
+      <h2 class="display">Nenhum creator<br>cresceu sozinho.<br><em>Todos usaram</em><br><em>uma rede de collabs.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">Cada membro traz sua própria audiência de executivos e compradores qualificados. Quando dois membros fazem uma parceria de conteúdo, as duas bases se sobrepõem — e ambos chegam a decisores que dificilmente alcançariam sozinhos via tráfego pago.</p>
+  </div>
+
+  <div class="rede-table reveal">
+    <div class="rede-row">
+      <div class="rede-k">Audiência por membro</div>
+      <div class="rede-v">Executivos e decisores qualificados</div>
+    </div>
+    <div class="rede-row">
+      <div class="rede-k">Parcerias de conteúdo</div>
+      <div class="rede-v">Acesso cruzado entre bases distintas</div>
+    </div>
+    <div class="rede-row">
+      <div class="rede-k">Custo de exposição</div>
+      <div class="rede-v">Zero — troca de valor entre pares</div>
+    </div>
+    <div class="rede-row">
+      <div class="rede-k">Duração do ativo de rede</div>
+      <div class="rede-v">Permanente — continua pós-programa</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONSELHEIROS ═══ -->
+<section class="s s-dark" id="conselheiros">
+  <div class="two-col" style="align-items:end;margin-bottom:56px">
+    <div>
+      <div class="eyebrow">Conselheiros</div>
+      <h2 class="display">Um conselheiro<br><em>ao vivo todo mês.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">O formato é de conversa aberta — os empresários fazem perguntas diretas sobre como cada conselheiro construiu presença que gera negócio. Rony, Renata e Erich se alternam mensalmente. Em 4 meses, você tem acesso a dois dos três ao vivo.</p>
+  </div>
+  <div class="cons-grid reveal">
+    <div class="cons-card">
+      <div class="cons-initial">R</div>
+      <div class="cons-name">Rony Meisler</div>
+      <div class="cons-role">Fundador, Reserva · Rebels Ventures · Investidor Blank</div>
+      <p class="cons-bio">Fundou a Reserva e constrói posicionamento pessoal e conteúdo desde 2005, utilizando-o como vetor de capital e negócios. Hoje investe em empresas de hipercrescimento usando suas mídias para os deals. Entrou como cliente, avaliou o método por dentro e tornou-se investidor da Blank.</p>
+      <div class="cons-freq">Rotação mensal · Ao vivo com o cohort</div>
+    </div>
+    <div class="cons-card">
+      <div class="cons-initial">R</div>
+      <div class="cons-name">Renata Vichi</div>
+      <div class="cons-role">Ex-CEO, Kopenhagen e Brasil Cacau · Exit Nestlé</div>
+      <p class="cons-bio">Dirigiu duas das marcas mais reconhecidas do varejo brasileiro. Quando a Nestlé adquiriu o grupo, a autoridade que ela construiu permaneceu. Referência de posicionamento executivo que sobrevive ao exit — o ativo pertence ao fundador, não ao cargo.</p>
+      <div class="cons-freq">Rotação mensal · Ao vivo com o cohort</div>
+    </div>
+    <div class="cons-card">
+      <div class="cons-initial">E</div>
+      <div class="cons-name">Erich Shibata</div>
+      <div class="cons-role">Diretor de Branding, CIMED</div>
+      <p class="cons-bio">Responsável pelo branding da CIMED e pela gestão estratégica das redes sociais de João Adibe e Karla Marques — dois dos casos mais estudados de presença executiva no Brasil. Visão de dentro de como uma operação desse porte é construída e mantida.</p>
+      <div class="cons-freq">Rotação mensal · Ao vivo com o cohort</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVENTO PRESENCIAL ═══ -->
+<section class="s s-mid">
+  <div class="two-col" style="align-items:end;margin-bottom:56px">
+    <div>
+      <div class="eyebrow">Pós-programa</div>
+      <h2 class="display">Evento presencial.<br><em>3× por ano.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">O encontro presencial acontece 1 a 2 meses após o encerramento — quando você já operou de forma autônoma. A Blank realiza 3 encontros por ano e cada ex-aluno tem direito a 1 acesso por ano.</p>
+  </div>
+  <div class="base-grid reveal">
+    <div class="base-card">
+      <div class="base-card-title">Conselheiros presencialmente</div>
+      <p class="base-card-body">Rony, Renata ou Erich presente. Mentoria presencial com quem construiu presença que gera negócio — e pode ser consultado ao vivo.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-title">Networking com outros membros</div>
+      <p class="base-card-body">Espaço para construir ou fortalecer relações com os colegas de cohort — e com ex-alunos de turmas anteriores.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-title">Mentoria em grupo com a Blank</div>
+      <p class="base-card-body">Análise coletiva, ajuste de rota e benchmarking entre ex-alunos com dados reais de operação autônoma.</p>
+    </div>
+    <div class="base-card">
+      <div class="base-card-title">Produção de conteúdo ao vivo</div>
+      <p class="base-card-body">Parte do dia é para gravar. Com feedback imediato do grupo e dos conselheiros — um ciclo que reativa e melhora o que foi construído no programa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASES ═══ -->
+<section class="s s-dark" id="cases">
+  <div class="two-col" style="align-items:end;margin-bottom:56px">
+    <div>
+      <div class="eyebrow">Resultados</div>
+      <h2 class="display">O que<br><em>aconteceu.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">A Blank gere 35 milhões de seguidores dos principais empresários do Brasil. Os casos abaixo mostram o que acontece quando posicionamento consistente encontra um negócio com substância — e alguém disposto a executar.</p>
+  </div>
+
+  <div class="cases-grid reveal">
+    <div class="case-card">
+      <div class="case-num">200M</div>
+      <p class="case-body">Alcance orgânico mensal atribuído à marca pessoal do fundador. O posicionamento nas redes sociais virou o principal vetor de aquisição do G4 — superando todos os canais pessoais já consolidados.</p>
+      <div class="case-rule"></div>
+      <div class="case-who">Tallis Gomes</div>
+      <div class="case-role">Fundador · G4 Educação</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">+200 mil</div>
+      <p class="case-body">De 132 mil para 325 mil seguidores em menos de 1 ano. Já no primeiro mês, mais 50 mil. O número estava estagnado por anos antes da Blank instalar o método.</p>
+      <div class="case-rule"></div>
+      <div class="case-who">Sandra Chayo</div>
+      <div class="case-role">Sócia Diretora · HOPE</div>
+    </div>
+    <div class="case-card">
+      <div class="case-num">Top of mind</div>
+      <p class="case-body">De 60 mil seguidores para +286 mil em menos de um ano. Mais importante: o nome se tornou o mais reconhecido no setor de transporte — posicionamento que não se apaga.</p>
+      <div class="case-rule"></div>
+      <div class="case-who">Tony Bernardini</div>
+      <div class="case-role">Fundador Trajeto · CEO Edini Transportes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INVESTIMENTO ═══ -->
+<section class="s s-mid" id="investimento">
+  <div class="two-col" style="align-items:end;margin-bottom:56px">
+    <div>
+      <div class="eyebrow">Investimento</div>
+      <h2 class="display">O programa.<br><em>R$ 100.000.</em></h2>
+    </div>
+    <p class="body" style="padding-top:52px">O Influentes tem início, meio e fim definidos. Ao encerramento, a empresa opera de forma autônoma. Para quem quiser continuar com acesso à comunidade e mentorias, existe o Membership pós-programa — uma opção, não uma obrigação.</p>
+  </div>
+
+  <div class="inv-card reveal">
+    <div class="inv-left">
+      <div class="inv-label">Programa Influentes</div>
+      <div class="inv-price">R$ 100.000</div>
+      <div class="inv-period">pagamento único · por empresa<br>parcelamento disponível</div>
+      <a href="#" class="btn-inv">Candidatura</a>
+      <div class="inv-note">Por candidatura · R$10M+ de faturamento · 30 vagas por turma</div>
+    </div>
+    <div class="inv-right">
+      <div class="inv-items">
+        <div class="inv-item"><span class="inv-check">✓</span>Onboarding e diagnóstico completo</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Sessões com Rony, Renata e Erich</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Planejamento estratégico</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Comunidade ativa do cohort</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Assessment do time + trilha</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Encontro presencial — mês 3</div>
+        <div class="inv-item"><span class="inv-check">✓</span>8 roteiros base pela Blank</div>
+        <div class="inv-item"><span class="inv-check">✓</span>3 revisões 1:1 com consultor</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Ciclo quinzenal de mentorias</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Call de internalização de 3h</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Account manager — 120 dias</div>
+        <div class="inv-item"><span class="inv-check">✓</span>Base operacional completa</div>
+      </div>
+      <div class="inv-membership">
+        Para ex-alunos que quiserem manter acesso à comunidade, capacitações mensais e mentorias, existe o Membership pós-programa. Mais detalhes no encerramento.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="s s-dark">
+  <div class="faq-wrap">
+    <div>
+      <h2 class="faq-side-head">Perguntas<br><em>comuns.</em></h2>
+      <p class="faq-side-body" style="margin-top:14px">O que mais aparece nas calls de candidatura.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open"><button class="faq-q">É necessária experiência prévia com redes sociais?<span class="faq-plus">+</span></button><div class="faq-a">Não. O programa parte do diagnóstico e constrói o posicionamento desde a base. O assessment do time identifica o ponto de partida e calibra o treinamento. Experiência anterior não é critério de seleção.</div></div>
+      <div class="faq-item"><button class="faq-q">Quem da empresa precisa participar?<span class="faq-plus">+</span></button><div class="faq-a">Você e ao menos uma pessoa de marketing. O time participa das mentorias operacionais; você das sessões estratégicas e com conselheiros. O restante roda sem demandar sua agenda executiva.</div></div>
+      <div class="faq-item"><button class="faq-q">Qual a demanda de tempo para o fundador?<span class="faq-plus">+</span></button><div class="faq-a">Mês 1: ~3h para onboarding e validação do plano. Meses 2–4: uma mentoria por mês + 3 revisões 1:1 ao longo do programa + sessões com conselheiros. O restante é conduzido pelo time.</div></div>
+      <div class="faq-item"><button class="faq-q">O encontro presencial é durante o programa?<span class="faq-plus">+</span></button><div class="faq-a">Não. Acontece 1 a 2 meses após o encerramento, quando você já operou de forma autônoma. A Blank realiza 3 encontros por ano e cada ex-aluno tem direito a 1 acesso por ano.</div></div>
+      <div class="faq-item"><button class="faq-q">O que acontece ao fim dos 120 dias?<span class="faq-plus">+</span></button><div class="faq-a">Time treinado, operação rodando e documentação completa dentro da empresa. O Membership pós-programa é opcional e sem contrato mínimo. Mais detalhes são apresentados no encerramento do programa.</div></div>
+      <div class="faq-item"><button class="faq-q">Como funciona o processo de seleção?<span class="faq-plus">+</span></button><div class="faq-a">Aplicação online seguida de uma call de qualificação com a Blank. Critérios: faturamento acima de R$ 10M e ao menos 1 profissional de marketing no time. Os setores são curados por complementaridade dentro do cohort.</div></div>
+      <div class="faq-item"><button class="faq-q">Como funciona a trilha coletiva?<span class="faq-plus">+</span></button><div class="faq-a">As 30 empresas têm acesso a um ambiente compartilhado para troca de feedback, análise cruzada de resultados e propostas de parceria. As sessões com conselheiros são abertas para perguntas de toda a turma.</div></div>
+      <div class="faq-item"><button class="faq-q">O método funciona para qualquer setor?<span class="faq-plus">+</span></button><div class="faq-a">Sim. O Influentes é construído sobre princípios de posicionamento que se aplicam independente do setor. A curadoria do cohort garante que os setores se complementem — não que sejam todos iguais.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLOSE ═══ -->
+<section class="close-s">
+  <!-- background waveform -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.3" viewBox="0 0 800 400" preserveAspectRatio="xMaxYMid slice">
+    <circle cx="760" cy="200" r="60" fill="none" stroke="#F0EDE6" stroke-width=".4" opacity=".12"/>
+    <circle cx="760" cy="200" r="120" fill="none" stroke="#F0EDE6" stroke-width=".3" opacity=".08"/>
+    <circle cx="760" cy="200" r="200" fill="none" stroke="#F0EDE6" stroke-width=".25" opacity=".05"/>
+    <circle cx="760" cy="200" r="320" fill="none" stroke="#F0EDE6" stroke-width=".2" opacity=".04"/>
+  </svg>
+  <div class="close-left">
+    <h2 class="close-title">
+      Influentes.<br><em>Turma I.</em>
+    </h2>
+    <p class="close-sub" style="margin-top:24px">30 vagas por turma. Seleção por candidatura. Faturamento mínimo R$10M.</p>
+  </div>
+  <div class="close-right">
+    <div class="close-card">
+      <div class="close-inner">
+        <div class="close-clabel">Resumo</div>
+        <div class="close-specs">
+          <div class="close-spec"><span class="close-spec-k">Diagnóstico e plano estratégico</span><span class="close-spec-v">✓</span></div>
+          <div class="close-spec"><span class="close-spec-k">Assessment do time + trilha</span><span class="close-spec-v">✓</span></div>
+          <div class="close-spec"><span class="close-spec-k">8 roteiros base pela Blank</span><span class="close-spec-v">✓</span></div>
+          <div class="close-spec"><span class="close-spec-k">Ciclo quinzenal de mentorias</span><span class="close-spec-v">✓</span></div>
+          <div class="close-spec"><span class="close-spec-k">Account manager dedicado</span><span class="close-spec-v">120 dias</span></div>
+          <div class="close-spec"><span class="close-spec-k">Sessões com conselheiros</span><span class="close-spec-v">Todo mês</span></div>
+          <div class="close-spec"><span class="close-spec-k">3 revisões 1:1</span><span class="close-spec-v">Meses 2–4</span></div>
+          <div class="close-spec"><span class="close-spec-k">Call de internalização</span><span class="close-spec-v">3h · Mês 4</span></div>
+          <div class="close-spec"><span class="close-spec-k">Base operacional completa</span><span class="close-spec-v">Permanente</span></div>
+        </div>
+      </div>
+      <div class="close-foot">
+        <a href="#" class="btn-close">Candidatura</a>
+        <div class="close-terms">Entrada por candidatura · 30 vagas · Turma I</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-blank">Blank</div>
+  <div class="f-copy">© 2025 Blank. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+// ── Waveform animation ──────────────────────────────────────────────
+(function(){
+  const w1 = document.getElementById('w1');
+  const w2 = document.getElementById('w2');
+  const w3 = document.getElementById('w3');
+  if(!w1) return;
+
+  let t = 0;
+  function buildPath(phase, ampScale, freq, points){
+    const W = 1440, cy = 450;
+    let d = `M 0 ${cy}`;
+    for(let i=0;i<=points;i++){
+      const x = (i/points)*W;
+      // amplitude grows from left to right (the amplification concept)
+      const growthFactor = Math.pow(x/W, 0.7);
+      const amp = 120 * growthFactor * ampScale;
+      const y = cy + Math.sin((x/W)*freq*Math.PI*2 + phase)*amp
+                   + Math.sin((x/W)*freq*1.3*Math.PI*2 + phase*0.7)*amp*0.3;
+      d += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
+    }
+    return d;
+  }
+
+  function tick(){
+    t += 0.008;
+    if(w1) w1.setAttribute('d', buildPath(t, 1.0, 2.5, 200));
+    if(w2) w2.setAttribute('d', buildPath(t*0.7+1.2, 0.7, 3.2, 150));
+    if(w3) w3.setAttribute('d', buildPath(t*1.3+2.4, 0.5, 1.8, 100));
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Animate signal bars on hero
+  const bars = document.querySelectorAll('.signal-bar');
+  let step = 0;
+  setInterval(()=>{
+    step = (step+1)%6;
+    bars.forEach((b,i)=>{
+      b.classList.toggle('on', i < (3+Math.sin(Date.now()/800+i)*1.5|0));
+    });
+  }, 400);
+})();
+
+// ── Frente signal bars animate ──────────────────────────────────────
+document.querySelectorAll('.frente').forEach((frente, fi) => {
+  const bars = frente.querySelectorAll('.frente-bar');
+  let active = false;
+  frente.addEventListener('mouseenter', () => {
+    if(active) return; active = true;
+    bars.forEach((b, i) => {
+      setTimeout(() => b.classList.add('on'), i * 40);
+    });
+  });
+  frente.addEventListener('mouseleave', () => {
+    active = false;
+    bars.forEach(b => b.classList.remove('on'));
+    // keep first frente on by default
+    if(fi===0){ bars.forEach(b=>b.classList.add('on')); active=true; }
+  });
+  // init first
+  if(fi===0){ bars.forEach(b=>b.classList.add('on')); active=true; }
+});
+
+// ── Month tabs ──────────────────────────────────────────────────────
+document.querySelectorAll('.m-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const m = btn.dataset.m;
+    document.querySelectorAll('.m-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.m-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector(`.m-panel[data-p="${m}"]`).classList.add('active');
+  });
+});
+
+// ── FAQ ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+// ── Scroll reveal ────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const d = parseInt(e.target.dataset.delay||0);
+      setTimeout(()=>e.target.classList.add('in'),d);
+    }
+  });
+}, {threshold:0.04});
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+['.pilar','.frente','.cons-card','.case-card','.qs-stat','.nivel','.rot-card','.base-card'].forEach(sel=>{
+  document.querySelectorAll(sel).forEach((el,i)=>{
+    el.classList.add('reveal');
+    el.dataset.delay = (i%4)*60;
+    io.observe(el);
+  });
+});
+
+// ── Nivel bar animate on scroll ──────────────────────────────────────
+const nios = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.nivel-bar-fill').forEach((f,i) => {
+        setTimeout(()=>{ f.style.width = ['33%','66%','100%'][i]||'100%'; },200+i*100);
+      });
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.assessment-grid').forEach(el=>nios.observe(el));
+</script>
+</body>
+</html>
