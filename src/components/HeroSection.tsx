@@ -63,6 +63,10 @@ const HeroSection = () => {
             INFLUENTES | FOUNDERS PROGRAM BLANK
           </div>
 
+          <div className="inline-block font-mono-brand text-[13px] font-medium tracking-[2px] uppercase mb-6 py-2 px-4" style={{ color: 'rgba(212,200,154,0.9)', background: 'rgba(212,200,154,0.08)', border: '1px solid rgba(212,200,154,0.15)' }}>
+            Turma inaugural · 30 vagas
+          </div>
+
           <h1 className="font-display text-cream font-normal leading-[0.93] tracking-[-3px] mb-8" style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
             Você não usa<br />seu canal mais<br /><em className="italic" style={{ color: 'rgba(240,237,230,0.40)' }}>lucrativo:</em><br />a sua marca pessoal
           </h1>

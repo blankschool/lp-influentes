@@ -28,18 +28,18 @@ const Index = () => (
     <MercadoSection />
     <OQueESection />
     <ParaQuemSection />
+    <CasesSection />
     <BonusSection />
-    <QuemSomosSection />
     <EstruturaSection />
     <JornadaSection />
+    <ConselheirosSection />
+    <QuemSomosSection />
     <AssessmentSection />
     <RoteirosSection />
-    <InternalizacaoSection />
     <BaseOperacionalSection />
+    <InternalizacaoSection />
     <RedeCohortSection />
-    <ConselheirosSection />
     <EventoPresencialSection />
-    <CasesSection />
     <InvestimentoSection />
     <FAQSection />
     <CloseSection />

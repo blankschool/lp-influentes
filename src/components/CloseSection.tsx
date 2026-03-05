@@ -13,9 +13,15 @@ const CloseSection = () => (
       <circle cx="760" cy="200" r="320" fill="none" stroke="#F0EDE6" strokeWidth=".2" opacity=".04" />
     </svg>
     <div className="relative z-[1]">
-      <h2 className="font-display font-normal leading-[0.93] text-cream mb-6" style={{ fontSize: 'clamp(44px, 6vw, 82px)', letterSpacing: '-3px' }}>
+      <div className="inline-block font-mono-brand text-[13px] font-medium tracking-[2px] uppercase mb-6 py-2 px-4" style={{ color: 'rgba(212,200,154,0.9)', background: 'rgba(212,200,154,0.06)', border: '1px solid rgba(212,200,154,0.12)' }}>
+        Turma inaugural · Vagas limitadas
+      </div>
+      <h2 className="font-display font-normal leading-[0.93] text-cream mb-4" style={{ fontSize: 'clamp(44px, 6vw, 82px)', letterSpacing: '-3px' }}>
         Influentes.<br /><em className="italic" style={{ color: 'rgba(240,237,230,0.40)' }}>Founders Program.</em>
       </h2>
+      <p className="text-[19px] font-light leading-[1.75]" style={{ color: 'rgba(240,237,230,0.65)', maxWidth: '460px' }}>
+        A sua marca pessoal já deveria estar gerando receita. Esse é o programa que instala essa operação de vez.
+      </p>
     </div>
     <div className="relative z-[1]" style={{ border: '1px solid rgba(240,237,230,0.08)', borderTop: '2px solid hsl(42 33% 92%)' }}>
       <div className="p-9">

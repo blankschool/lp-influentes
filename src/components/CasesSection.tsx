@@ -25,7 +25,7 @@ const CasesSection = () => (
         </h2>
       </div>
       <p className="text-[19px] font-light leading-[1.85] pt-0 md:pt-[52px]" style={{ color: 'rgba(240,237,230,0.92)' }}>
-        A Blank gere 34 milhões de seguidores dos principais empresários do Brasil. Os nossos cases provam que o método funciona em fundadores diferentes, em setores diferentes e em estágios distintos de empresa.
+        A Blank gere 34 milhões de seguidores dos principais empresários do Brasil. O método funciona em fundadores diferentes, setores diferentes e estágios distintos de empresa. Os resultados falam por si.
       </p>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
