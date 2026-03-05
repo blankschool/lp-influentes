@@ -1,3 +1,5 @@
+import { getFormUrl } from "@/lib/utm";
+
 const items = [
   'Onboarding e diagnóstico completo', 'Planejamento estratégico', 'Assessment do time + trilha de desenvolvimento',
   '8 roteiros base escritos pela Blank', 'Mentoria semanal | time e empresário', 'Account manager dedicado — 120 dias',
@@ -36,7 +38,7 @@ const InvestimentoSection = () => (
           <p className="text-[17px] font-light leading-[1.75] mb-9 flex-1" style={{ color: 'rgba(240,237,230,0.68)' }}>
             Envie sua aplicação e nosso time de especialistas entrará em contato para apresentar o programa e o investimento.
           </p>
-          <a href="#" className="block w-full py-4 text-center font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink no-underline transition-opacity hover:opacity-[0.88] mb-3">Enviar Aplicação</a>
+          <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="block w-full py-4 text-center font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink no-underline transition-opacity hover:opacity-[0.88] mb-3">Enviar Aplicação</a>
           <div className="font-mono-brand text-[14px] text-center leading-[1.6]" style={{ color: 'rgba(240,237,230,0.45)' }}>Por candidatura · R$10M+ de faturamento · 30 vagas</div>
         </div>
         <div className="p-[48px_24px] md:p-[48px_44px] flex flex-col justify-between gap-7">

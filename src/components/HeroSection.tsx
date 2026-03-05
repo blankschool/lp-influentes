@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { getFormUrl } from "@/lib/utm";
 
 const NUM_WAVES = 5;
 
@@ -76,7 +77,7 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col gap-3.5">
-            <a href="#investimento" className="inline-block font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline text-center transition-opacity hover:opacity-85" style={{ maxWidth: '300px' }}>Enviar Aplicação</a>
+            <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="inline-block font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline text-center transition-opacity hover:opacity-85" style={{ maxWidth: '300px' }}>Enviar Aplicação</a>
             <a href="#estrutura" className="font-mono-brand text-[14px] tracking-[0.5px] no-underline flex items-center gap-2 transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.72)' }}>Como funciona →</a>
           </div>
         </div>

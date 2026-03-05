@@ -1,3 +1,4 @@
+import { getFormUrl } from "@/lib/utm";
 import caseTallis from "@/assets/case-tallis.png";
 import caseSandra from "@/assets/case-sandra.png";
 import caseTony from "@/assets/case-tony.png";
@@ -34,7 +35,7 @@ const CasesSection = () => (
       ))}
     </div>
     <div className="mt-10 flex flex-wrap items-center gap-4">
-      <a href="#investimento" className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
+      <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
     </div>
   </section>
 );

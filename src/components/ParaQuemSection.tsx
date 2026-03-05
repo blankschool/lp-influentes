@@ -1,3 +1,5 @@
+import { getFormUrl } from "@/lib/utm";
+
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
   <div className="font-mono-brand text-[14px] font-medium tracking-[4px] uppercase flex items-center gap-3.5 mb-6" style={{ color: 'rgba(240,237,230,0.72)' }}>
     <span className="w-5 h-px flex-shrink-0" style={{ background: 'rgba(240,237,230,0.3)' }} />
@@ -39,7 +41,7 @@ const ParaQuemSection = () => (
       </div>
     </div>
     <div className="mt-10 flex flex-wrap items-center gap-4">
-      <a href="#investimento" className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
+      <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
     </div>
   </section>
 );

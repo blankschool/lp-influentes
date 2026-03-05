@@ -1,3 +1,5 @@
+import { getFormUrl } from "@/lib/utm";
+
 const specs = [
   ['Diagnóstico e plano estratégico', '✓'], ['Assessment do time + trilha', '✓'], ['8 roteiros base pela Blank', '✓'],
   ['Ciclo quinzenal de mentorias', '✓'], ['Account manager dedicado', '120 dias'], ['Sessões com conselheiros', 'Todo mês'],
@@ -36,7 +38,7 @@ const CloseSection = () => (
         </div>
       </div>
       <div className="p-[24px_36px]" style={{ borderTop: '1px solid rgba(240,237,230,0.08)', background: 'rgba(240,237,230,0.015)' }}>
-        <a href="#" className="block w-full py-[17px] text-center font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink no-underline transition-opacity hover:opacity-[0.88] mb-2.5">Enviar Aplicação</a>
+        <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="block w-full py-[17px] text-center font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink no-underline transition-opacity hover:opacity-[0.88] mb-2.5">Enviar Aplicação</a>
         <div className="font-mono-brand text-[13px] text-center tracking-[0.5px]" style={{ color: 'rgba(240,237,230,0.12)' }}>Entrada por candidatura · 30 vagas</div>
       </div>
     </div>
