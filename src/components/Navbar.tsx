@@ -1,11 +1,5 @@
 const BlankLogo = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1648 410"
-    fill="none"
-    style={{ height: '20px', width: 'auto' }}
-    aria-label="Blank"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1648 410" fill="none" style={{ height: '20px', width: 'auto' }} aria-label="Blank">
     <path d="M178.513 31.5057C178.513 28.6137 174.492 27.905 173.497 30.6247C164.785 54.2777 156.553 81.8187 119.793 116.637C118.3 118.055 115.792 116.523 115.792 114.473V9.00176C115.792 6.28214 111.848 5.26708 110.91 7.81433C97.0103 45.1038 58.3364 96.1637 2.46977 113.516C1.14873 113.918 0 114.703 0 116.101V378.028C0 380.92 4.02056 381.628 5.01612 378.909C13.7273 355.256 33.1983 309.539 58.7193 292.896C60.4424 291.766 62.7207 293.011 62.7207 295.06V400.532C62.7207 403.251 66.5881 404.228 67.6028 401.719C83.7808 361.365 114.031 318.847 176.043 296.018C177.345 295.539 178.513 294.83 178.513 293.432V31.5057Z" fill="#E5E5E5"/>
     <path d="M261.719 400.397V391.913C281.611 390.936 295.664 387.527 303.858 381.666C312.052 375.806 316.149 363.912 316.149 345.966V53.8562C316.149 36.2935 311.995 24.5915 303.724 18.7309C295.434 12.8703 281.439 9.4612 261.738 8.48444V0H425.298C468.988 0 503.278 8.38869 528.148 25.1661C553.018 41.9435 565.443 65.1751 565.443 94.8229C565.443 119.414 557.057 140.137 540.286 157.029C523.515 173.903 500.195 184.877 470.367 189.952C508.792 194.242 538.984 205.657 560.925 224.196C582.866 242.736 593.836 265.661 593.836 292.972C593.836 326.144 581.2 352.344 555.947 371.554C530.694 390.783 496.117 400.378 452.236 400.378H261.757L261.719 400.397ZM359.437 184.111H427.021C455.491 184.111 477.833 176.258 494.03 160.553C510.228 144.849 518.307 123.149 518.307 95.4357C518.307 70.8442 509.098 51.577 490.661 37.6342C472.224 23.6913 446.818 16.7008 414.443 16.7008H359.437V184.111ZM412.7 383.716H445.171C475.995 383.716 500.463 375.48 518.613 358.99C536.744 342.5 545.819 320.494 545.819 292.991C545.819 265.489 535.385 242.008 514.516 225.518C493.648 209.028 464.68 200.792 427.615 200.792H359.437V344.798C359.437 357.879 363.477 367.628 371.576 374.063C379.674 380.498 393.382 383.716 412.681 383.716H412.7Z" fill="#E5E5E5"/>
     <path d="M728.487 391.894V400.397H605.018V391.894C611.661 390.917 617.022 389.864 621.138 388.715C625.197 387.508 629.543 385.669 634.157 383.122C638.733 380.575 642.103 377.108 644.228 372.722C645.836 369.447 646.87 365.559 647.272 361.116C647.406 359.641 647.463 358.109 647.463 356.5V70.5762C647.463 68.91 647.425 67.3395 647.272 65.8648V53.3009C647.272 46.8849 646.123 41.4648 643.902 37.079C641.643 32.6931 638.216 29.2265 633.64 26.6793C631.477 25.4727 629.294 24.4193 627.227 23.5766C624.967 22.5615 622.746 21.795 620.621 21.2396C616.505 20.1288 611.144 19.018 604.539 17.8688V9.36523H685.793V48.283C685.659 49.8535 685.563 51.5197 685.563 53.2818V339.206C685.563 341.006 685.659 342.711 685.793 344.377V356.481C685.793 362.897 686.903 368.317 689.124 372.703C691.383 377.089 694.81 380.556 699.386 383.103C701.549 384.31 703.732 385.363 705.8 386.206C708.059 387.221 710.28 387.968 712.405 388.523C716.521 389.634 721.882 390.745 728.487 391.894Z" fill="#E5E5E5"/>
@@ -19,11 +13,11 @@ const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-[99] h-14 px-6 md:px-[52px] flex items-center justify-between" style={{ background: 'rgba(12,12,10,0.94)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(240,237,230,0.08)' }}>
     <BlankLogo />
     <div className="flex items-center gap-8">
-      <a href="#estrutura" className="hidden md:inline font-mono-brand text-[13px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Estrutura</a>
-      <a href="#conselheiros" className="hidden md:inline font-mono-brand text-[13px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Conselheiros</a>
-      <a href="#cases" className="hidden md:inline font-mono-brand text-[13px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Cases</a>
-      <a href="#investimento" className="hidden md:inline font-mono-brand text-[13px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Investimento</a>
-      <a href="#investimento" className="font-mono-brand text-[13px] font-medium tracking-[2px] uppercase bg-cream text-ink py-[9px] px-[22px] no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
+      <a href="#estrutura" className="hidden md:inline font-mono-brand text-[14px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Estrutura</a>
+      <a href="#conselheiros" className="hidden md:inline font-mono-brand text-[14px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Conselheiros</a>
+      <a href="#cases" className="hidden md:inline font-mono-brand text-[14px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Cases</a>
+      <a href="#investimento" className="hidden md:inline font-mono-brand text-[14px] tracking-[0.5px] no-underline transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.60)' }}>Investimento</a>
+      <a href="#investimento" className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink py-[9px] px-[22px] no-underline transition-opacity hover:opacity-85">Enviar Aplicação</a>
     </div>
   </nav>
 );

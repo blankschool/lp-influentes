@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <div className="font-mono-brand text-[12px] font-medium tracking-[4px] uppercase flex items-center gap-3.5 mb-6" style={{ color: 'rgba(240,237,230,0.72)' }}>
+  <div className="font-mono-brand text-[14px] font-medium tracking-[4px] uppercase flex items-center gap-3.5 mb-6" style={{ color: 'rgba(240,237,230,0.72)' }}>
     <span className="w-5 h-px flex-shrink-0" style={{ background: 'rgba(240,237,230,0.3)' }} />
     {children}
   </div>
@@ -34,12 +34,12 @@ const AssessmentSection = () => {
           </h2>
         </div>
         <div className="pt-0 md:pt-[52px]">
-          <p className="text-[17px] font-light leading-[1.85]" style={{ color: 'rgba(240,237,230,0.92)' }}>
+          <p className="text-[19px] font-light leading-[1.85]" style={{ color: 'rgba(240,237,230,0.92)' }}>
             A maioria dos programas ensina o mesmo método para todo mundo. O Influentes começa entendendo o ponto de partida do seu time — e calibra o treinamento de acordo.
           </p>
           <div className="mt-6 p-[20px_24px]" style={{ border: '1px solid rgba(240,237,230,0.08)', borderTop: '2px solid rgba(240,237,230,0.35)' }}>
-            <div className="font-mono-brand text-[11px] tracking-[3px] uppercase mb-2" style={{ color: 'rgba(240,237,230,0.72)' }}>Resultado do Assessment</div>
-            <p className="text-[15px] font-light leading-[1.7]" style={{ color: 'rgba(240,237,230,0.92)' }}>
+            <div className="font-mono-brand text-[13px] tracking-[3px] uppercase mb-2" style={{ color: 'rgba(240,237,230,0.72)' }}>Resultado do Assessment</div>
+            <p className="text-[17px] font-light leading-[1.7]" style={{ color: 'rgba(240,237,230,0.92)' }}>
               O time recebe uma trilha personalizada: o que desenvolver primeiro, quais competências priorizar e qual ritmo de evolução é realista para os 120 dias do programa.
             </p>
           </div>
@@ -52,9 +52,9 @@ const AssessmentSection = () => {
             <div className="h-[2px] mb-5 overflow-hidden" style={{ background: 'rgba(240,237,230,0.08)' }}>
               <div className="h-full transition-all duration-600 ease-out" style={{ width: visible ? n.width : '0%', background: `rgba(240,237,230,${n.opacity})` }} />
             </div>
-            <div className="font-mono-brand text-[11px] tracking-[2.5px] uppercase mb-3" style={{ color: 'rgba(240,237,230,0.68)' }}>{n.tag}</div>
-            <div className="text-[18px] font-medium mb-2.5" style={{ color: 'rgba(240,237,230,0.9)' }}>{n.title}</div>
-            <p className="text-[15px] font-light leading-[1.7]" style={{ color: 'rgba(240,237,230,0.90)' }}>{n.body}</p>
+            <div className="font-mono-brand text-[13px] tracking-[2.5px] uppercase mb-3" style={{ color: 'rgba(240,237,230,0.68)' }}>{n.tag}</div>
+            <div className="text-[20px] font-medium mb-2.5" style={{ color: 'rgba(240,237,230,0.9)' }}>{n.title}</div>
+            <p className="text-[17px] font-light leading-[1.7]" style={{ color: 'rgba(240,237,230,0.90)' }}>{n.body}</p>
           </div>
         ))}
       </div>

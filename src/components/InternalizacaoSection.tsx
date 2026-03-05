@@ -1,5 +1,5 @@
 const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <div className="font-mono-brand text-[12px] font-medium tracking-[4px] uppercase flex items-center gap-3.5 mb-6" style={{ color: 'rgba(240,237,230,0.72)' }}>
+  <div className="font-mono-brand text-[14px] font-medium tracking-[4px] uppercase flex items-center gap-3.5 mb-6" style={{ color: 'rgba(240,237,230,0.72)' }}>
     <span className="w-5 h-px flex-shrink-0" style={{ background: 'rgba(240,237,230,0.3)' }} />
     {children}
   </div>
@@ -32,14 +32,14 @@ const InternalizacaoSection = () => (
         </h2>
       </div>
       <div className="pt-0 md:pt-[52px]">
-        <p className="text-[17px] font-light leading-[1.85]" style={{ color: 'rgba(240,237,230,0.92)' }}>
+        <p className="text-[19px] font-light leading-[1.85]" style={{ color: 'rgba(240,237,230,0.92)' }}>
           A maioria das agências tem incentivo para permanecer indispensável. O Influentes inverte essa lógica: o critério de sucesso é que você não precise da Blank no mês 5.
         </p>
         <div className="mt-6">
-          <div className="font-mono-brand text-[11px] tracking-[3px] uppercase mb-3" style={{ color: 'rgba(240,237,230,0.72)' }}>O que é entregue na call de 3h</div>
+          <div className="font-mono-brand text-[13px] tracking-[3px] uppercase mb-3" style={{ color: 'rgba(240,237,230,0.72)' }}>O que é entregue na call de 3h</div>
           {deliverables.map((d, i) => (
-            <div key={i} className="flex items-baseline gap-2.5 py-2.5 text-[15px] font-light" style={{ color: 'rgba(240,237,230,0.92)', borderBottom: '1px solid rgba(240,237,230,0.04)' }}>
-              <span className="font-mono-brand text-[12px] flex-shrink-0" style={{ color: 'rgba(240,237,230,0.68)' }}>→</span>
+            <div key={i} className="flex items-baseline gap-2.5 py-2.5 text-[17px] font-light" style={{ color: 'rgba(240,237,230,0.92)', borderBottom: '1px solid rgba(240,237,230,0.04)' }}>
+              <span className="font-mono-brand text-[14px] flex-shrink-0" style={{ color: 'rgba(240,237,230,0.68)' }}>→</span>
               {d}
             </div>
           ))}
@@ -51,10 +51,10 @@ const InternalizacaoSection = () => (
       {timeline.map((t, i) => (
         <div key={i} className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-10 py-7 pl-9 relative" style={{ borderBottom: i < timeline.length - 1 ? '1px solid rgba(240,237,230,0.04)' : 'none' }}>
           <div className="absolute w-[9px] h-[9px] rounded-full left-[-5px] top-[34px]" style={{ background: t.highlight ? 'rgba(240,237,230,0.6)' : 'rgba(240,237,230,0.15)', border: '1px solid hsl(60 6% 7%)' }} />
-          <div className="font-mono-brand text-[12px] font-medium tracking-[2px] uppercase pt-0.5" style={{ color: t.highlight ? 'rgba(240,237,230,0.7)' : 'rgba(240,237,230,0.4)' }}>{t.phase}</div>
+          <div className="font-mono-brand text-[14px] font-medium tracking-[2px] uppercase pt-0.5" style={{ color: t.highlight ? 'rgba(240,237,230,0.7)' : 'rgba(240,237,230,0.4)' }}>{t.phase}</div>
           <div>
-            <div className="text-[17px] font-medium mb-1.5" style={{ color: t.highlight ? 'hsl(42 33% 92%)' : 'rgba(240,237,230,0.82)' }}>{t.title}</div>
-            <p className="text-[15px] font-light leading-[1.75]" style={{ color: 'rgba(240,237,230,0.72)' }}>{t.body}</p>
+            <div className="text-[19px] font-medium mb-1.5" style={{ color: t.highlight ? 'hsl(42 33% 92%)' : 'rgba(240,237,230,0.82)' }}>{t.title}</div>
+            <p className="text-[17px] font-light leading-[1.75]" style={{ color: 'rgba(240,237,230,0.72)' }}>{t.body}</p>
           </div>
         </div>
       ))}
