@@ -101,26 +101,21 @@ const HeroSection = () => {
       <div className="relative z-[3] flex-1 grid grid-cols-1 md:grid-cols-2 min-h-screen">
 
         {/* Left — photo of conselheiros */}
-        <div className="relative overflow-hidden" style={{ minHeight: '60vw' }}>
+        <div className="relative self-end overflow-visible">
           <img
             src="/hero.png"
             alt="Rony Meisler, Renata Vichi e Erich Shibata — Conselheiros Influentes"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="w-full h-auto block"
           />
-          {/* Right-edge fade — blends photo into dark background */}
+          {/* Right-edge fade — blends photo into dark background, starts after Erich's text */}
           <div
-            className="absolute inset-y-0 right-0 w-1/2 pointer-events-none"
-            style={{ background: 'linear-gradient(to right, rgba(12,12,10,0) 0%, rgba(12,12,10,0.85) 100%)' }}
+            className="absolute inset-y-0 right-0 w-[18%] pointer-events-none"
+            style={{ background: 'linear-gradient(to right, rgba(12,12,10,0) 0%, rgba(12,12,10,0.88) 100%)' }}
           />
           {/* Top fade */}
           <div
-            className="absolute inset-x-0 top-0 h-[20%] pointer-events-none"
-            style={{ background: 'linear-gradient(to bottom, rgba(12,12,10,0.6) 0%, rgba(12,12,10,0) 100%)' }}
-          />
-          {/* Bottom fade — mobile only */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-[35%] pointer-events-none md:hidden"
-            style={{ background: 'linear-gradient(to bottom, rgba(12,12,10,0) 0%, rgba(12,12,10,0.95) 100%)' }}
+            className="absolute inset-x-0 top-0 h-[10%] pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, rgba(12,12,10,0.85) 0%, rgba(12,12,10,0) 100%)' }}
           />
         </div>
 
