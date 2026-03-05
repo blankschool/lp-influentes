@@ -31,7 +31,7 @@ const BonusSection = () => (
     </div>
 
     {/* Image cards */}
-    <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+    <div className="relative z-10 grid grid-cols-1 gap-6 md:gap-8 max-w-[1400px] mx-auto">
       {cards.map((c, i) => (
         <img key={i} src={c.img} alt={c.alt} className="w-full h-auto rounded-lg" loading="lazy" />
       ))}
