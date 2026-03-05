@@ -41,7 +41,7 @@ const EstruturaSection = () => (
     <div className="flex gap-6 items-center mb-8 flex-wrap">
       {[
         { label: 'Individual — trabalho exclusivo', cls: 'rgba(240,237,230,0.65)' },
-        { label: 'Coletiva — cohort de 30 empresas', cls: 'rgba(240,237,230,0.28)' },
+        { label: 'Coletiva — cohort', cls: 'rgba(240,237,230,0.28)' },
         { label: 'Conselheiros convidados', cls: 'rgba(212,200,154,0.5)' },
       ].map((l, i) => (
         <div key={i} className="flex items-center gap-2 font-mono-brand text-[14px] tracking-[0.5px]" style={{ color: 'rgba(240,237,230,0.78)' }}>

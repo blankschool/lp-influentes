@@ -16,7 +16,7 @@ const CloseSection = () => (
     </svg>
     <div className="relative z-[1]">
       <div className="inline-block font-mono-brand text-[13px] font-medium tracking-[2px] uppercase mb-6 py-2 px-4" style={{ color: 'rgba(212,200,154,0.9)', background: 'rgba(212,200,154,0.06)', border: '1px solid rgba(212,200,154,0.12)' }}>
-        Turma inaugural · Vagas limitadas
+        Inauguração Especial · Vagas limitadas
       </div>
       <h2 className="font-display font-normal leading-[0.93] text-cream mb-4" style={{ fontSize: 'clamp(44px, 6vw, 82px)', letterSpacing: '-3px' }}>
         Influentes.<br /><em className="italic" style={{ color: 'rgba(240,237,230,0.40)' }}>Founders Program.</em>
@@ -39,7 +39,7 @@ const CloseSection = () => (
       </div>
       <div className="p-[24px_36px]" style={{ borderTop: '1px solid rgba(240,237,230,0.08)', background: 'rgba(240,237,230,0.015)' }}>
         <a href={getFormUrl()} target="_blank" rel="noopener noreferrer" className="block w-full py-[17px] text-center font-mono-brand text-[14px] font-medium tracking-[2px] uppercase bg-cream text-ink no-underline transition-opacity hover:opacity-[0.88] mb-2.5">Enviar Aplicação</a>
-        <div className="font-mono-brand text-[13px] text-center tracking-[0.5px]" style={{ color: 'rgba(240,237,230,0.12)' }}>Entrada por candidatura · 30 vagas</div>
+        <div className="font-mono-brand text-[13px] text-center tracking-[0.5px]" style={{ color: 'rgba(240,237,230,0.12)' }}>Entrada por candidatura · Vagas limitadas</div>
       </div>
     </div>
   </section>

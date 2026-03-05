@@ -9,7 +9,7 @@ const faqs = [
   { q: 'O que acontece ao fim dos 120 dias?', a: 'Time treinado, operação rodando e documentação completa dentro da empresa. O Membership pós-programa é opcional e sem contrato mínimo.' },
   { q: 'Como funciona o processo de seleção?', a: 'Aplicação online + entrevista com a Blank. Critérios: faturamento acima de R$ 5M e ao menos 1 profissional de marketing no time. Setores são curados por complementaridade dentro do cohort.' },
   { q: 'O que é o Membership pós-programa?', a: 'Acesso à comunidade, capacitações mensais e mentorias após o encerramento. Opcional, sem contrato mínimo. Mais detalhes são apresentados no encerramento do programa.' },
-  { q: 'Como funciona a trilha coletiva?', a: 'As 30 empresas têm acesso a um ambiente compartilhado para troca de feedback, análise cruzada de resultados e propostas de parceria. As sessões com conselheiros são abertas para perguntas de todo o cohort.' },
+  { q: 'Como funciona a trilha coletiva?', a: 'Os membros do cohort têm acesso a um ambiente compartilhado para troca de feedback, análise cruzada de resultados e propostas de parceria. As sessões com conselheiros são abertas para perguntas de todo o cohort.' },
   { q: 'O método funciona para qualquer setor?', a: 'Sim. O Influentes é construído sobre princípios de posicionamento que se aplicam independente do setor. A curadoria do cohort garante que os setores se complementem — não que sejam todos iguais.' },
 ];
 
