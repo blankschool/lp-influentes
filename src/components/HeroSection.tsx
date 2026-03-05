@@ -31,14 +31,15 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden flex flex-col justify-end" style={{ borderBottom: '1px solid rgba(240,237,230,0.08)' }}>
+    <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ borderBottom: '1px solid rgba(240,237,230,0.08)' }}>
+
+      {/* ── Background: wave animation ── */}
       <div className="absolute inset-0 z-0">
         <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" className="w-full h-full absolute inset-0">
           <defs>
             <clipPath id="clipVP">
               <rect x="0" y="0" width="1440" height="900" />
             </clipPath>
-            {/* Radial gradient from source — black to very dark gray */}
             <radialGradient id="bgRadial" cx="6%" cy="50%" r="75%">
               <stop offset="0%" stopColor="#1a1a17" />
               <stop offset="100%" stopColor="#0C0C0A" />
@@ -57,7 +58,6 @@ const HeroSection = () => {
             </linearGradient>
           </defs>
 
-          {/* Subtle background radial — black to near-black gray */}
           <rect x="0" y="0" width="1440" height="900" fill="url(#bgRadial)" />
 
           {/* Very faint grid texture */}
@@ -88,39 +88,66 @@ const HeroSection = () => {
             />
           ))}
 
-          {/* Overlay fades */}
           <rect x="0" y="0" width="1440" height="900" fill="url(#wfade)" />
           <rect x="0" y="0" width="1440" height="900" fill="url(#wfade2)" />
 
-          {/* Minimal source dot */}
           <circle cx="80" cy="450" r="2" fill="#888884" opacity="0.5">
             <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4s" repeatCount="indefinite" />
           </circle>
         </svg>
       </div>
 
-      <div className="relative z-[3] px-6 pb-[60px] md:px-[52px] md:pb-20 grid grid-cols-1 md:grid-cols-2 gap-0 items-end">
-        <div>
+      {/* ── Two-column layout ── */}
+      <div className="relative z-[3] flex-1 grid grid-cols-1 md:grid-cols-2 min-h-screen">
+
+        {/* Left — photo of conselheiros */}
+        <div className="relative overflow-hidden" style={{ minHeight: '60vw' }}>
+          <img
+            src="/hero.png"
+            alt="Rony Meisler, Renata Vichi e Erich Shibata — Conselheiros Influentes"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+          {/* Right-edge fade — blends photo into dark background */}
+          <div
+            className="absolute inset-y-0 right-0 w-1/2 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, rgba(12,12,10,0) 0%, rgba(12,12,10,0.85) 100%)' }}
+          />
+          {/* Top fade */}
+          <div
+            className="absolute inset-x-0 top-0 h-[20%] pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, rgba(12,12,10,0.6) 0%, rgba(12,12,10,0) 100%)' }}
+          />
+          {/* Bottom fade — mobile only */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-[35%] pointer-events-none md:hidden"
+            style={{ background: 'linear-gradient(to bottom, rgba(12,12,10,0) 0%, rgba(12,12,10,0.95) 100%)' }}
+          />
+        </div>
+
+        {/* Right — content */}
+        <div className="flex flex-col justify-end px-6 pb-[60px] md:px-[52px] md:pb-20 pt-10 md:pt-0">
           <div className="font-mono-brand text-[10px] font-medium tracking-[4px] uppercase mb-7 flex items-center gap-3.5" style={{ color: 'rgba(240,237,230,0.78)' }}>
             <div className="w-7 h-px flex-shrink-0" style={{ background: 'rgba(240,237,230,0.3)' }} />
             INFLUENTES | FOUNDERS PROGRAM BLANK
           </div>
-          <h1 className="font-display text-cream font-normal leading-[0.93] tracking-[-3px]" style={{ fontSize: 'clamp(48px, 7vw, 100px)' }}>
+
+          <h1 className="font-display text-cream font-normal leading-[0.93] tracking-[-3px] mb-8" style={{ fontSize: 'clamp(40px, 5.5vw, 88px)' }}>
             Você não usa<br />
             seu canal mais<br />
             <em className="italic" style={{ color: 'rgba(240,237,230,0.40)' }}>lucrativo:</em><br />
             a sua marca pessoal
           </h1>
-        </div>
-        <div className="md:pl-16 md:border-l border-t md:border-t-0 pt-9 md:pt-0 flex flex-col justify-end gap-8" style={{ borderColor: 'rgba(240,237,230,0.08)' }}>
-          <p className="text-[15px] font-light leading-[1.85] max-w-[360px]" style={{ color: 'rgba(240,237,230,0.93)' }}>
+
+          <p className="text-[15px] font-light leading-[1.85] mb-8" style={{ color: 'rgba(240,237,230,0.93)', maxWidth: '400px' }}>
             Em 120 dias, a Blank desenha o seu posicionamento, capacita o seu time e instala uma operação dentro do seu negócio que gera receita através das suas redes sociais.
           </p>
+
           <div className="flex flex-col gap-3.5">
-            <a href="#investimento" className="inline-block font-mono-brand text-[11px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline text-center transition-opacity hover:opacity-85">Enviar Aplicação</a>
+            <a href="#investimento" className="inline-block font-mono-brand text-[11px] font-medium tracking-[2px] uppercase bg-cream text-ink py-4 px-8 no-underline text-center transition-opacity hover:opacity-85" style={{ maxWidth: '260px' }}>Enviar Aplicação</a>
             <a href="#estrutura" className="font-mono-brand text-[11px] tracking-[0.5px] no-underline flex items-center gap-2 transition-colors hover:text-cream" style={{ color: 'rgba(240,237,230,0.72)' }}>Como funciona →</a>
           </div>
         </div>
+
       </div>
     </section>
   );
